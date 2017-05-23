@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<!--  This site was created in Webflow. http://www.webflow.com -->
+<!--  Last Published: Sat Apr 29 2017 12:20:06 GMT+0000 (UTC)  -->
+<html data-wf-page="58f28c17d5fc681355abdb58" data-wf-site="5848596297d08fb201d83c01">
+<head>
+  <meta charset="utf-8">
+  <title>Game 2</title>
+  <meta content="Game 2" property="og:title">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <meta content="Webflow" name="generator">
+  <link href="/css/normalize.css" rel="stylesheet" type="text/css">
+  <link href="/css/webflow.css" rel="stylesheet" type="text/css">
+  <link href="/css/fansy-io.webflow.css" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+  <script type="text/javascript">
+    WebFont.load({
+      google: {
+        families: ["Open Sans:300,300italic,400,400italic,600,600italic,700,700italic,800,800italic"]
+      }
+    });
+  </script>
+
+  <script>
+        function getHL() {
+
+            var request = new XMLHttpRequest();
+
+            request.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    try {
+                        console.log(responseText);
+                        if (this.responseText == "") {
+                            return;
+                        }
+                        var hlList = JSON.parse(this.responseText);
+                        for (var i = 0; i < hlList.length; i++) {
+                            //var componentMachine = document.getElementById(streamer["name"] + "-machineStatus");
+                            //componentMachine.innerHTML = streamer["machineStatus"] + " " +
+                              //                           streamer["machineStatusUpdatedAt"] + ", " +
+                                //                         streamer["machineStatusChangedAt"];
+                        }
+                    }
+                    catch (err) {
+                        console.log(err);
+                    }
+                }
+            };
+
+            request.open("GET", "/hl/?streamerId={{name}}&gameId={{game}}", true);
+            request.send();
+        }
+    </script>
+
+  <script src="/js/modernizr.js" type="text/javascript"></script>
+  <link href="/images/favicon.png" rel="shortcut icon" type="image/x-icon">
+  <link href="/images/webclip.png" rel="apple-touch-icon">
+  <script src="https://content.jwplatform.com/libraries/fACZw8Y9.js"></script>
+</head>
+<body class="body">
+  <div class="s-header">
+    <div class="promo-container w-container"><a class="link-block-logo w-inline-block" href="/"><h1 class="text-logo-small">fansy.ai</h1></a>
+      <div class="header-nav-right"><a class="header-nav promo-nav" href="mailto:kk@fansy.io">Contact Us</a><a class="join-btn join-header-btn w-button" href="#">Join Private Beta</a>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="c-content w-container">
+      <div class="b-header">
+        <div class="text-breadcrumbs"><a href="streamer.html" class="link-breadcrumbs">Imaqtpie</a> <span class="text-span">/</span> Wukong 20/7/24</div>
+      </div>
+      <div class="w-row">
+        <!--div class="w-col w-col-9 w-col-stack">
+          <div class="b-game-info">
+            <div class="game-date"><span class="text-span-2">Game time: 35:40</span>
+            </div>
+            <div class="team-vs-team">
+              <div class="b-game-team"><img class="image-icon" src="/images/Renekton.png" width="30"><img class="image-icon" src="images/Renekton.png" width="30"><img class="image-icon" src="images/Renekton.png" width="30"><img class="image-icon" src="images/Renekton.png" width="30"><img class="image-icon" src="images/Renekton.png" width="30">
+              </div><img class="icon-vs image-icon" src="images/swords.png" width="16">
+              <div class="b-game-team"><img class="image-icon" src="/images/Renekton.png" width="30"><img class="image-icon" src="images/Renekton.png" width="30"><img class="image-icon" src="images/Renekton.png" width="30"><img class="image-icon" src="images/Renekton.png" width="30"><img class="image-icon" src="images/Renekton.png" width="30">
+              </div>
+            </div>
+            <div class="info-el">
+              <div class="info-name">KILLS</div>
+              <div class="info-value">20</div>
+            </div>
+            <div class="info-el">
+              <div class="info-name">DEATHS</div>
+              <div class="info-value">7</div>
+            </div>
+            <div class="info-el">
+              <div class="info-name">ASSISTS</div>
+              <div class="info-value">24</div>
+            </div>
+            <div class="info-el">
+              <div class="info-name">BARONS</div>
+              <div class="info-value">2</div>
+            </div>
+            <div class="info-el">
+              <div class="info-name">DRAGONS</div>
+              <div class="info-value">5</div>
+            </div>
+            <div class="info-el">
+              <div class="info-name">TOWERS</div>
+              <div class="info-value">12</div>
+            </div>
+          </div>
+        </div-->
+        <div class="column-3 w-col w-col-3 w-col-stack">
+          <div class="b-moments" style="background-image: url('../images/thumb0-320x180.jpg');">
+            <a class="moments-link w-inline-block" href="#"><img class="moments-play" src="/images/play.png">
+              <div>Game highlights in one video</div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <h2 class="text-breadcrumbs">Highlights</h2>
+      <div class="w-row">
+        <div class="w-col w-col-9 w-col-stack">
+          <div class="w-row">
+            <div class="column w-col w-col-4">
+              <a class="w-inline-block" href="http://fansy-io.webflow.io/game"><img class="image-highlight popup-open" data-ix="popup-open" src="images/thumb0-320x180.jpg" width="228">
+              </a>
+              <div class="highlight-title text-grid-title w-clearfix">
+                <a href="http://fansy-io.webflow.io/game" class="link-h"></a>Kills: 2, Assist: 1<span class="download-icon">⬇</span>
+              </div>
+              <div class="text-grid-subtitle">game time: 03:42</div>
+            </div>
+            <div class="w-col w-col-4">
+              <a class="w-inline-block" href="http://fansy-io.webflow.io/game"><img class="image-highlight" src="images/thumb0-320x180.jpg" width="228">
+              </a>
+              <div class="highlight-title text-grid-title w-clearfix">
+                <a href="http://fansy-io.webflow.io/game" class="link-h"></a>Kills: 4, Assist: 1, Death<span class="download-icon">⬇</span>
+              </div>
+              <div class="text-grid-subtitle">game time: 05:42</div>
+            </div>
+            <div class="w-col w-col-4">
+              <a class="w-inline-block" href="http://fansy-io.webflow.io/game"><img class="image-highlight" src="images/thumb0-320x180.jpg" width="228">
+              </a>
+              <div class="highlight-title text-grid-title w-clearfix">
+                <a href="http://fansy-io.webflow.io/game" class="link-h"></a>Kills: 2, Death<span class="download-icon">⬇</span>
+              </div>
+              <div class="text-grid-subtitle">game time: 08:42</div>
+            </div>
+          </div>
+          <div class="w-row">
+            <div class="column w-col w-col-4">
+              <a class="w-inline-block" href="http://fansy-io.webflow.io/game"><img class="image-highlight" data-ix="popup-open" src="images/thumb0-320x180.jpg" width="228">
+              </a>
+              <div class="highlight-title text-grid-title w-clearfix">
+                <a href="http://fansy-io.webflow.io/game" class="link-h"></a>Kills: 2, Assist: 1<span class="download-icon">⬇</span>
+              </div>
+              <div class="text-grid-subtitle">game time: 03:42</div>
+            </div>
+            <div class="w-col w-col-4">
+              <a class="w-inline-block" href="http://fansy-io.webflow.io/game"><img class="image-highlight" src="images/thumb0-320x180.jpg" width="228">
+              </a>
+              <div class="highlight-title text-grid-title w-clearfix">
+                <a href="http://fansy-io.webflow.io/game" class="link-h"></a>Kills: 4, Assist: 1, Death<span class="download-icon">⬇</span>
+              </div>
+              <div class="text-grid-subtitle">game time: 05:42</div>
+            </div>
+            <div class="w-col w-col-4">
+              <a class="w-inline-block" href="http://fansy-io.webflow.io/game"><img class="image-highlight" src="images/thumb0-320x180.jpg" width="228">
+              </a>
+              <div class="highlight-title text-grid-title w-clearfix">
+                <a href="http://fansy-io.webflow.io/game" class="link-h"></a>Kills: 2, Death<span class="download-icon">⬇</span>
+              </div>
+              <div class="text-grid-subtitle">game time: 08:42</div>
+            </div>
+          </div>
+          <div class="w-row">
+            <div class="column w-col w-col-4">
+              <a class="w-inline-block" href="http://fansy-io.webflow.io/game"><img class="image-highlight" data-ix="popup-open" src="images/thumb0-320x180.jpg" width="228">
+              </a>
+              <div class="highlight-title text-grid-title w-clearfix">
+                <a href="http://fansy-io.webflow.io/game" class="link-h"></a>Kills: 2, Assist: 1<span class="download-icon">⬇</span>
+              </div>
+              <div class="text-grid-subtitle">game time: 03:42</div>
+            </div>
+            <div class="w-col w-col-4">
+              <a class="w-inline-block" href="http://fansy-io.webflow.io/game"><img class="image-highlight" src="images/thumb0-320x180.jpg" width="228">
+              </a>
+              <div class="highlight-title text-grid-title w-clearfix">
+                <a href="http://fansy-io.webflow.io/game" class="link-h"></a>Kills: 4, Assist: 1, Death<span class="download-icon">⬇</span>
+              </div>
+              <div class="text-grid-subtitle">game time: 05:42</div>
+            </div>
+            <div class="w-col w-col-4">
+              <a class="w-inline-block" href="http://fansy-io.webflow.io/game"><img class="image-highlight" src="images/thumb0-320x180.jpg" width="228">
+              </a>
+              <div class="highlight-title text-grid-title w-clearfix">
+                <a href="http://fansy-io.webflow.io/game" class="link-h"></a>Kills: 2, Death<span class="download-icon">⬇</span>
+              </div>
+              <div class="text-grid-subtitle">game time: 08:42</div>
+            </div>
+          </div>
+          <div class="w-row">
+            <div class="column w-col w-col-4">
+              <a class="w-inline-block" href="http://fansy-io.webflow.io/game"><img class="image-highlight" data-ix="popup-open" src="images/thumb0-320x180.jpg" width="228">
+              </a>
+              <div class="highlight-title text-grid-title w-clearfix">
+                <a href="http://fansy-io.webflow.io/game" class="link-h"></a>Kills: 2, Assist: 1<span class="download-icon">⬇</span>
+              </div>
+              <div class="text-grid-subtitle">game time: 03:42</div>
+            </div>
+            <div class="w-col w-col-4">
+              <a class="w-inline-block" href="http://fansy-io.webflow.io/game"><img class="image-highlight" src="images/thumb0-320x180.jpg" width="228">
+              </a>
+              <div class="highlight-title text-grid-title w-clearfix">
+                <a href="http://fansy-io.webflow.io/game" class="link-h"></a>Kills: 4, Assist: 1, Death<span class="download-icon">⬇</span>
+              </div>
+              <div class="text-grid-subtitle">game time: 05:42</div>
+            </div>
+            <div class="w-col w-col-4">
+              <a class="w-inline-block" href="http://fansy-io.webflow.io/game"><img class="image-highlight" src="images/thumb0-320x180.jpg" width="228">
+              </a>
+              <div class="highlight-title text-grid-title w-clearfix">
+                <a href="http://fansy-io.webflow.io/game" class="link-h"></a>Kills: 2, Death<span class="download-icon">⬇</span>
+              </div>
+              <div class="text-grid-subtitle">game time: 08:42</div>
+            </div>
+          </div>
+          <div class="c-pagination">
+            <a class="link-pagination w-inline-block" href="#">
+              <div>1</div>
+            </a>
+            <a class="link-pagination w-inline-block" href="#">
+              <div>2</div>
+            </a>
+            <a class="link-pagination-selected w-inline-block" href="#">
+              <div>3</div>
+            </a>
+            <a class="link-pagination w-inline-block" href="#">
+              <div>4</div>
+            </a>
+          </div>
+        </div>
+        <div class="column-2 w-col w-col-3 w-col-stack">
+          <!--div class="b-filters">
+            <div class="filters-title">Filter</div>
+            <div class="filter-form w-form">
+              <form data-name="Email Form" id="email-form" name="email-form">
+                <label class="field-label-2" for="field-4">Type</label>
+                <select class="select-field-2 w-select" data-name="Field 4" id="field-4" name="field-4">
+                  <option value="All">All types</option>
+                  <option value="Kill">Kill</option>
+                  <option value="Death">Death</option>
+                  <option value="Assist">Assist</option>
+                </select>
+                <label class="field-label-2" for="field-5">Stage</label>
+                <select class="select-field-3 w-select" data-name="Field 5" id="field-5" name="field-5">
+                  <option value="All">All time</option>
+                  <option value="Early">Early game</option>
+                  <option value="Late">Late game</option>
+                </select>
+                <label class="field-label-2" for="field-6">Fight types</label>
+                <select class="select-field-4 w-select" data-name="Field 6" id="field-6" name="field-6">
+                  <option value="All">All types</option>
+                  <option value="2">Double kill</option>
+                  <option value="3">Tripple kill</option>
+                  <option value="4">Quadro kill</option>
+                  <option value="5">Penta kill</option>
+                </select>
+                <div class="checkbox-field w-checkbox w-clearfix">
+                  <input class="w-checkbox-input" data-name="Checkbox 4" id="checkbox-4" name="checkbox-4" type="checkbox">
+                  <label class="field-label-4 w-form-label" for="checkbox-4">Multi-kill</label>
+                </div>
+                <div class="w-checkbox w-clearfix">
+                  <input class="w-checkbox-input" data-name="Checkbox 5" id="checkbox-5" name="checkbox-5" type="checkbox">
+                  <label class="field-label-4 w-form-label" for="checkbox-5">Team fight</label>
+                </div>
+              </form>
+              <div class="w-form-done">
+                <div>Thank you! Your submission has been received!</div>
+              </div>
+              <div class="w-form-fail">
+                <div>Oops! Something went wrong while submitting the form</div>
+              </div>
+            </div>
+          </div-->
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>getHL();</script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" type="text/javascript"></script>
+  <script src="/js/webflow.js" type="text/javascript"></script>
+  <!-- [if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif] -->
+</body>
+</html>
