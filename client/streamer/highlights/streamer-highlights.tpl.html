@@ -1,0 +1,96 @@
+<div class="section">
+  <div class="c-content w-container">
+    <div class="b-header">
+      <div class="text-breadcrumbs">{{vm.streamer.nickname}}</div>
+      <div class="b-page-nav">
+        <a class="user-nav w-inline-block" ui-sref="app.streamer.games">
+          <div class="text-block-4">GAMES</div>
+        </a>
+        <a class="user-nav-active w-inline-block" ui-sref="app.streamer.highlights">
+          <div>HIGHLIGHTS</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="w-row">
+      <div class="w-col w-col-9 w-col-stack">
+        <div class="w-row">
+          <div class="w-col w-col-4" ng-repeat="highlight in vm.highlights">
+            <a class="w-inline-block" ui-sref="app.streamer.highlights.highlight({ highlightId: highlight.id })">
+              <img class="image-highlight" ng-src="{{highlight.thumb}}" width="228">
+            </a>
+            <div class="highlight-title text-grid-title w-clearfix">
+              <a class="link-h" ui-sref="app.streamer.highlights.highlight({ highlightId: highlight.id })">
+                Kills: {{highlight.killScore || 0}}, Assist: {{highlight.assistScore || 0}}<span ng-if="highlight.deathScore">, Death</span>
+              </a>
+              <a class="download-icon" ng-href="{{highlight.video}}" download="">⬇</a>
+            </div>
+            <img class="champ-highlight" ng-src="{{highlight.heroIcon}}" width="30">
+            <div class="text-grid-subtitle">game time: 03:42
+              <br>{{highlight.gameDate | date:'dd.MM.yyyy'}}</div>
+          </div>
+        </div>
+
+        <div class="c-pagination">
+          <ul uib-pagination
+            ng-if="vm.totalHighlightsCount > vm.itemsPerPage"
+            total-items="vm.totalHighlightsCount"
+            items-per-page="vm.itemsPerPage"
+            ng-model="vm.filters.page"
+            max-size="4"
+            direction-links="false">
+          </ul>
+        </div>
+      </div>
+      <div class="column-2 w-col w-col-3 w-col-stack">
+        <div class="b-filters">
+          <div class="filters-title">Filters</div>
+          <div class="filter-form w-form">
+            <form data-name="Email_Form" id="email-form" name="email-form">
+              <label class="field-label-2" for="All">Champion</label>
+              <select class="select-field-2 w-select" ng-model="vm.filters.champion" data-name="All" id="All" name="All">
+                <option value="">All champs</option>
+                <!-- ng-option don't work properly due to strict types comparison -->
+                <option ng-repeat="champion in vm.champions" value="{{champion.id}}">{{champion.name}}</option>
+              </select>
+
+              <label class="field-label-2" for="field">Type</label>
+              <select class="select-field-2 w-select" ng-model="vm.filters.type" id="field" name="field">
+                <option value="">All types</option>
+                <option value="1">Kill</option>
+                <option value="2">Death</option>
+                <option value="3">Assist</option>
+              </select>
+
+              <label class="field-label-2" for="field-2">Stage</label>
+              <select class="select-field-3 w-select" ng-model="vm.filters.stage" data-name="Field 2" id="field-2" name="field-2">
+                <option value="">All time</option>
+                <option value="1">Early game</option>
+                <option value="2">Late game</option>
+              </select>
+
+              <!-- <label class="field-label-2" for="field-3">Fight types</label>
+              <select class="select-field-4 w-select" ng-model="vm.filters.fightType" data-name="Field 3" id="field-3" name="field-3">
+                <option value="">All types</option>
+                <option value="2">Double kill</option>
+                <option value="3">Tripple kill</option>
+                <option value="4">Quadro kill</option>
+                <option value="5">Penta kill</option>
+              </select> -->
+
+              <div class="checkbox-field w-checkbox w-clearfix">
+                <input class="w-checkbox-input" ng-model="vm.filters.multiKill" ng-true-value="'true'" data-name="Checkbox" id="checkbox" name="checkbox" type="checkbox">
+                <label class="field-label-4 w-form-label" for="checkbox">Multi-kill</label>
+              </div>
+
+              <!-- <div class="w-checkbox w-clearfix">
+                <input class="w-checkbox-input" ng-model="vm.filters.teamFight" ng-true-value="'true'" data-name="Checkbox 3" id="checkbox-3" name="checkbox-3" type="checkbox">
+                <label class="field-label-4 w-form-label" for="checkbox-3">Team fight</label>
+              </div> -->
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

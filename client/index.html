@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!--  This site was created in Webflow. http://www.webflow.com -->
+<!--  Last Published: Sat Apr 29 2017 12:20:06 GMT+0000 (UTC)  -->
+<html data-wf-page="58f4c8f108e8bf3d78e3bb4b" data-wf-site="5848596297d08fb201d83c01">
+<head>
+  <base href="/">
+  <meta charset="utf-8">
+  <title></title><!-- seting with "smart-page-title" directive -->
+  <meta content="" property="og:title"><!-- seting with "smart-page-title" directive -->
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <meta content="Webflow" name="generator">
+
+  <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="bower_components/angular-ui-notification/dist/angular-ui-notification.min.css" rel="stylesheet" type="text/css">
+
+  <link href="css/normalize.css" rel="stylesheet" type="text/css">
+  <link href="css/webflow.css" rel="stylesheet" type="text/css">
+  <link href="css/fansy-io.webflow.css" rel="stylesheet" type="text/css">
+
+  <link href="css/custom.css" rel="stylesheet" type="text/css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js"></script>
+  <script type="text/javascript">
+    WebFont.load({
+      google: {
+        families: ["Open Sans:300,300italic,400,400italic,600,600italic,700,700italic,800,800italic"]
+      }
+    });
+  </script>
+  <script src="js/modernizr.js" type="text/javascript"></script>
+  <link href="images/favicon.png" rel="shortcut icon" type="image/x-icon">
+  <link href="images/webclip.png" rel="apple-touch-icon">
+  <script src="https://content.jwplatform.com/libraries/fACZw8Y9.js"></script>
+</head>
+<body class="body" smart-page-title="Fansy.ai">
+
+  <!-- ui-view root container -->
+    <ui-view name="root" autoscroll="false"></ui-view>
+  <!-- end ui-view root container -->
+
+  <!-- VENDOR scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js" type="text/javascript"></script>
+    <script src="js/webflow.js" type="text/javascript"></script>
+    <!-- [if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif] -->
+    <script src="bower_components/angular/angular.min.js" type="text/javascript"></script>
+    <script src="bower_components/angular-animate/angular-animate.min.js" type="text/javascript"></script>
+    <script src="bower_components/angular-touch/angular-touch.min.js" type="text/javascript"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js" type="text/javascript"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="bower_components/angular-ui-notification/dist/angular-ui-notification.min.js" type="text/javascript"></script>
+  <!-- end VENDOR scripts -->
+
+  <!-- APPLICATION scripts -->
+    <script src="app.config.js" type="text/javascript"></script>
+    <script src="main.js" type="text/javascript"></script>
+    <script src="app.js" type="text/javascript"></script>
+    <!-- common module -->
+      <script src="_common/module.js" type="text/javascript"></script>
+      <script src="_common/directives/common-smartPageTitle.directive.js" type="text/javascript"></script>
+      <script src="_common/services/common-layoutLoader.service.js" type="text/javascript"></script>
+      <script src="_common/services/common-norifyAndLeave.service.js" type="text/javascript"></script>
+    <!-- end common module -->
+
+    <!-- landing module -->
+      <script src="landing/module.js" type="text/javascript"></script>
+    <!-- end landing module -->
+
+    <!-- streamer module -->
+      <script src="streamer/module.js" type="text/javascript"></script>
+      <script src="streamer/games/streamer-games.controller.js" type="text/javascript"></script>
+      <script src="streamer/games/streamer-games.service.js" type="text/javascript"></script>
+      <script src="streamer/game/streamer-game.controller.js" type="text/javascript"></script>
+      <script src="streamer/game/streamer-game.service.js" type="text/javascript"></script>
+
+      <script src="streamer/highlight/streamer-highlight.controller.js" type="text/javascript"></script>
+
+      <script src="streamer/highlights/streamer-highlights.controller.js" type="text/javascript"></script>
+      <script src="streamer/highlights/streamer-highlights.service.js" type="text/javascript"></script>
+    <!-- end streamer module -->
+  <!-- end APPLICATION scripts -->
+</body>
+</html>

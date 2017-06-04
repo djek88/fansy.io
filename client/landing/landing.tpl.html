@@ -1,0 +1,55 @@
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<script>
+  Webflow.ready(); // need for background video
+
+  $(document).ready(function() {
+    // workaround
+    $('.demo-anchor').click(function() {
+        $('html, body').animate({
+            scrollTop: $(".demo-block").offset().top
+        }, 1000);
+    });
+
+    // throw error
+    /*$('.demo-anchor').click(function(e) {
+      e.preventDefault();
+      $('body').scrollTo('.demo-block');
+    });*/
+  });
+</script>
+
+<div class="background-video w-background-video" data-autoplay="data-autoplay" data-loop="data-loop" data-poster-url="https://daks2k3a4ib2z.cloudfront.net/5848596297d08fb201d83c01/58f4c9f26a2d1a6e08b31ff2_Highlight 1_480-poster-00001.jpg" data-video-urls="https://daks2k3a4ib2z.cloudfront.net/5848596297d08fb201d83c01/58f4c9f26a2d1a6e08b31ff2_Highlight 1_480-transcode.webm,https://daks2k3a4ib2z.cloudfront.net/5848596297d08fb201d83c01/58f4c9f26a2d1a6e08b31ff2_Highlight 1_480-transcode.mp4" data-wf-ignore="data-wf-ignore">
+  <div class="bgvideo-overlay">
+    <div class="s-promo-header">
+      <div class="promo-container w-container"><a class="link-block-logo w-inline-block" data-ui-sref="app.landing"><h1 class="text-logo-mainpage text-logo-small">fansy.ai</h1></a>
+        <a class="promo-link-block w-inline-block" href="mailto:kk@fansy.io">
+          <div class="promo-nav">Contact Us</div>
+        </a>
+        <a class="demo-anchor promo-link-block w-inline-block" href="#demo-block">
+          <div class="promo-nav">Demo</div>
+        </a>
+      </div>
+    </div>
+    <h1 class="promo-header">AI that creaTes video gaming highlights</h1><a class="join-btn w-button" href="#">Join Private Beta</a>
+  </div>
+</div>
+
+<div class="promo-body">
+  <div class="mainpage-subtitle">HOW IT WORKS</div>
+  <div class="row w-row">
+    <div class="w-col w-col-4">
+      <div class="howto-num">1</div>
+      <div class="howto-text">AI watches your live stream and understands what’s going on</div>
+    </div>
+    <div class="w-col w-col-4">
+      <div class="howto-num">2</div>
+      <div class="howto-text">Cloud technologies creates highlights in real time</div>
+    </div>
+    <div class="w-col w-col-4">
+      <div class="howto-num">3</div>
+      <div class="howto-text">You can search, filter and download highlights</div>
+    </div>
+  </div>
+  <div class="demo-block mainpage-subtitle" id="demo-block">SOME DEMONSTRATION</div>
+  <div class="demo-text howto-text">Here's the demo of Fansy making highlights for Twitch streamers, <a data-ui-sref="app.streamer.games({ nickname: 'imaqtpie' })" class="link">Imaqtpie</a> and <a data-ui-sref="app.streamer.games({ nickname: 'faker' })" class="link">Faker</a>, in real-time.</div>
+</div>

@@ -1,0 +1,127 @@
+<div>
+  <div class="c-content w-container">
+    <div class="b-header">
+      <div class="text-breadcrumbs"><a data-ui-sref="^.games" class="link-breadcrumbs">{{vm.streamer.nickname}}</a> <span class="text-span">/</span> {{vm.game.heroName}} {{vm.game.killScore || 0}}/{{vm.game.assistScore || 0}}/{{vm.game.deathScore || 0}}</div>
+    </div>
+
+    <div class="w-row">
+      <div class="w-col w-col-9 w-col-stack">
+        <!-- <div class="b-game-info">
+          <div class="game-date"><span class="text-span-2">Game time: 35:40</span>
+          </div>
+          <div class="team-vs-team">
+            <div class="b-game-team"><img class="image-icon" src="images/Renekton.png" width="30"><img class="image-icon" src="images/Renekton.png" width="30"><img class="image-icon" src="images/Renekton.png" width="30"><img class="image-icon" src="images/Renekton.png" width="30"><img class="image-icon" src="images/Renekton.png" width="30">
+            </div><img class="icon-vs image-icon" src="images/swords.png" width="16">
+            <div class="b-game-team"><img class="image-icon" src="images/Renekton.png" width="30"><img class="image-icon" src="images/Renekton.png" width="30"><img class="image-icon" src="images/Renekton.png" width="30"><img class="image-icon" src="images/Renekton.png" width="30"><img class="image-icon" src="images/Renekton.png" width="30">
+            </div>
+          </div>
+          <div class="info-el">
+            <div class="info-name">KILLS</div>
+            <div class="info-value">20</div>
+          </div>
+          <div class="info-el">
+            <div class="info-name">DEATHS</div>
+            <div class="info-value">7</div>
+          </div>
+          <div class="info-el">
+            <div class="info-name">ASSISTS</div>
+            <div class="info-value">24</div>
+          </div>
+          <div class="info-el">
+            <div class="info-name">BARONS</div>
+            <div class="info-value">2</div>
+          </div>
+          <div class="info-el">
+            <div class="info-name">DRAGONS</div>
+            <div class="info-value">5</div>
+          </div>
+          <div class="info-el">
+            <div class="info-name">TOWERS</div>
+            <div class="info-value">12</div>
+          </div>
+        </div> -->
+      </div>
+      <div class="column-3 w-col w-col-3 w-col-stack">
+        <div class="b-moments">
+          <a class="moments-link w-inline-block" href="#"><img class="moments-play" src="images/play.png">
+            <div>Game highlights in one video</div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="text-breadcrumbs">Highlights</h2>
+    <div class="w-row">
+      <div class="w-col w-col-9 w-col-stack">
+        <div class="w-row">
+          <div class="w-col w-col-4" ng-repeat="highlight in vm.highlights">
+            <a class="w-inline-block" ui-sref=".highlight({ highlightId: highlight.id })">
+              <img class="image-highlight" ng-src="{{highlight.thumb}}" width="228">
+            </a>
+            <div class="highlight-title text-grid-title w-clearfix">
+              <a class="link-h" data-ui-sref=".highlight({ highlightId: highlight.id })">
+                Kills: {{highlight.killScore || 0}}, Assist: {{highlight.assistScore || 0}}<span ng-if="highlight.deathScore">, Death</span>
+              </a>
+              <a class="download-icon" ng-href="{{highlight.video}}" download="">⬇</a>
+            </div>
+            <div class="text-grid-subtitle">game time: 05:42</div>
+          </div>
+        </div>
+
+        <div class="c-pagination">
+          <ul uib-pagination
+            ng-if="vm.totalHighlightsCount > vm.itemsPerPage"
+            total-items="vm.totalHighlightsCount"
+            items-per-page="vm.itemsPerPage"
+            ng-model="vm.filters.page"
+            max-size="4"
+            direction-links="false">
+          </ul>
+        </div>
+      </div>
+
+      <div class="column-2 w-col w-col-3 w-col-stack">
+        <div class="b-filters">
+          <div class="filters-title">Filter</div>
+          <div class="filter-form w-form">
+            <form data-name="Email_Form" id="email-form" name="email-form">
+              <label class="field-label-2" for="field-4">Type</label>
+              <select class="select-field-2 w-select" ng-model="vm.filters.type" data-name="Field 4" id="field-4" name="field-4">
+                <option value="">All types</option>
+                <option value="1">Kill</option>
+                <option value="2">Death</option>
+                <option value="3">Assist</option>
+              </select>
+
+              <label class="field-label-2" for="field-5">Stage</label>
+              <select class="select-field-3 w-select" ng-model="vm.filters.stage" data-name="Field 5" id="field-5" name="field-5">
+                <option value="">All time</option>
+                <option value="1">Early game</option>
+                <option value="2">Late game</option>
+              </select>
+
+              <!-- <label class="field-label-2" for="field-6">Fight types</label>
+              <select class="select-field-4 w-select" ng-model="vm.filters.fightType" data-name="Field 6" id="field-6" name="field-6">
+                <option value="">All types</option>
+                <option value="1">Double kill</option>
+                <option value="2">Tripple kill</option>
+                <option value="3">Quadro kill</option>
+                <option value="4">Penta kill</option>
+              </select> -->
+
+              <div class="checkbox-field w-checkbox w-clearfix">
+                <input class="w-checkbox-input" ng-model="vm.filters.multiKill" ng-true-value="'true'" data-name="Checkbox 4" id="checkbox-4" name="checkbox-4" type="checkbox">
+                <label class="field-label-4 w-form-label" for="checkbox-4">Multi-kill</label>
+              </div>
+
+              <!-- <div class="w-checkbox w-clearfix">
+                <input class="w-checkbox-input" ng-model="vm.filters.teamFight" ng-true-value="'true'" data-name="Checkbox 5" id="checkbox-5" name="checkbox-5" type="checkbox">
+                <label class="field-label-4 w-form-label" for="checkbox-5">Team fight</label>
+              </div> -->
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

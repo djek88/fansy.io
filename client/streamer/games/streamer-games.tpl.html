@@ -1,0 +1,35 @@
+<div class="section">
+  <div class="c-content w-container">
+    <div class="b-header">
+      <div class="text-breadcrumbs">{{vm.streamer.nickname}}</div>
+      <div class="b-page-nav">
+        <a class="user-nav-active w-inline-block" ui-sref="app.streamer.games">
+          <div>GAMES</div>
+        </a>
+        <a class="user-nav w-inline-block" ui-sref="app.streamer.highlights">
+          <div class="text-block-4">HIGHLIGHTS</div>
+        </a>
+      </div>
+    </div>
+    <div class="row-grid w-row">
+      <div class="w-col w-col-4" ng-repeat="game in vm.games">
+        <a class="w-inline-block" ui-sref="app.streamer.game({ gameId: game.id })"><img class="image-game" ng-src="{{game.thumb}}">
+        </a>
+        <div class="text-grid-title">
+          <a class="link-h" ui-sref="app.streamer.game({ gameId: game.id })">{{game.heroName}} {{game.killScore || 0}}/{{game.assistScore || 0}}/{{game.deathScore || 0}}</a>
+        </div>
+        <div class="text-grid-subtitle">{{game.created_at | date:'dd.MM.yyyy'}}, <strong>{{game.hlTotalCount}}</strong> highlights</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="c-pagination w-container">
+  <ul uib-pagination
+    ng-if="vm.totalGamesCount > vm.itemsPerPage"
+    total-items="vm.totalGamesCount"
+    items-per-page="vm.itemsPerPage"
+    ng-model="vm.filters.page"
+    max-size="4"
+    direction-links="false">
+  </ul>
+</div>
