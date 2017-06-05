@@ -116,7 +116,40 @@ function config($stateProvider) {
               };
             }
           }
+        },
+        highlightEvents: ($http, $stateParams, APP_CONFIG) => {
+          const url = `${APP_CONFIG.apiRootUrl}/highlight/${$stateParams.highlightId}/events`;
+
+          return $http.get(url).then(res => res.data);
         }
+      }
+    })
+    .state('app.streamer.game.allHighlightsInOne', {
+      url: '/all-highlights-in-one',
+      data: {
+        title: 'Highlights in one video'
+      },
+      views: {
+        'highlightPopup@app.streamer': {
+          templateUrl: 'streamer/highlight/streamer-highlight.tpl.html',
+          controller: 'streamerHighlightController',
+          controllerAs: 'vm'
+        }
+      },
+      resolve: {
+        highlight: (gameHighlights) => ({
+          thumb: gameHighlights.game.hlsThumb,
+          video: gameHighlights.game.hlsVideo,
+          killScore: gameHighlights.game.killScore,
+          assistScore: gameHighlights.game.assistScore,
+          deathScore: gameHighlights.game.deathScore,
+          heroName: null,
+          gameId: null,
+          gameDate: null,
+          gameTime: null,
+          events: null
+        }),
+        highlightEvents: () => []
       }
     })
     .state('app.streamer.highlights', {
@@ -187,6 +220,11 @@ function config($stateProvider) {
               };
             }
           }
+        },
+        highlightEvents: ($http, $stateParams, APP_CONFIG) => {
+          const url = `${APP_CONFIG.apiRootUrl}/highlight/${$stateParams.highlightId}/events`;
+
+          return $http.get(url).then(res => res.data);
         }
       }
     });

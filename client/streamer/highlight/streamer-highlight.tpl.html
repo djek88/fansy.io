@@ -7,22 +7,25 @@
     </div>
 
     <div class="popup-header w-clearfix">
-      <a class="popup-download-link" ng-href="{{vm.highlight.video}}" download="">⬇ Download highlight (5 Mb)</a>
+      <a class="popup-download-link" ng-href="{{vm.highlight.video}}" download="">⬇ Download highlight<!--  (5 Mb) --></a>
       <div class="popup-title">
         Kills: {{vm.highlight.killScore || 0}}, Assist: {{vm.highlight.assistScore || 0}}<span ng-if="vm.highlight.deathScore">, Death</span>
       </div>
       <div class="popup-info">
         <div class="game-date">
           <a ng-if="vm.highlight.gameId" ui-sref="app.streamer.game({ gameId: vm.highlight.gameId })" class="popup-link">{{vm.highlight.heroName}} — {{vm.highlight.gameDate | date:'dd.MM.yyyy'}} |</a>
-          <span class="text-span-2">Game time: {{vm.highlight.gameTime}}</span>
+          <span ng-if="vm.highlight.gameTime" class="text-span-2">Game time: {{vm.highlight.gameTime}}</span>
         </div>
       </div>
     </div>
-    <div class="highlight-info"><img class="image-icon" src="images/Renekton.png" width="30"><img class="image-icon" src="images/Renekton.png" width="30"><img class="image-icon" src="images/Renekton.png" width="30"><img class="image-icon-streamer" src="images/Renekton.png" width="30"><img class="image-icon" src="images/Renekton.png" width="40"><img class="icon-vs image-icon" src="images/swords.png" width="16"><img class="image-icon" src="images/Inhibitor_Red.png" width="40">
-    </div>
-    <div class="highlight-info"><img class="image-icon" src="images/Renekton.png" width="30"><img class="image-icon-streamer" src="images/Renekton.png" width="30"><img class="image-icon" src="images/Renekton.png" width="40"><img class="icon-vs image-icon" src="images/swords.png" width="16"><img class="image-icon" src="images/Inhibitor_Red.png" width="40">
-    </div>
-    <div class="highlight-info"><img class="image-icon-streamer" src="images/Renekton.png" width="30"><img class="image-icon" src="images/Renekton.png" width="40"><img class="icon-vs image-icon" src="images/swords.png" width="16"><img class="image-icon" src="images/Inhibitor_Red.png" width="40">
+    <div class="highlight-info" ng-repeat="e in vm.highlightEvents">
+      <img ng-class="e.streamerHeroId == e.assistant4Id ? 'image-icon-streamer' : 'image-icon'" ng-src="{{e.assistant4Icon}}" ng-if="e.assistant4Id" width="30">
+      <img ng-class="e.streamerHeroId == e.assistant3Id ? 'image-icon-streamer' : 'image-icon'" ng-src="{{e.assistant3Icon}}" ng-if="e.assistant3Id" width="30">
+      <img ng-class="e.streamerHeroId == e.assistant2Id ? 'image-icon-streamer' : 'image-icon'" ng-src="{{e.assistant2Icon}}" ng-if="e.assistant2Id" width="30">
+      <img ng-class="e.streamerHeroId == e.assistant1Id ? 'image-icon-streamer' : 'image-icon'" ng-src="{{e.assistant1Icon}}" ng-if="e.assistant1Id" width="30">
+      <img ng-class="e.streamerHeroId == e.killerId ? 'image-icon-streamer' : 'image-icon'" ng-src="{{e.killerIcon}}" width="40">
+      <img class="icon-vs image-icon" src="images/swords.png" width="16">
+      <img ng-class="e.streamerHeroId == e.victimId ? 'image-icon-streamer' : 'image-icon'" ng-src="{{e.victimIcon}}" width="40">
     </div>
   </div>
 </div>

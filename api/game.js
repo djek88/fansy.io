@@ -3,8 +3,8 @@ const HttpError = require('../lib/HttpError');
 const conn = require('../common/database').conn;
 const config = require('../config');
 
-router.get('/:gameId/highlights', (req, res, next) => {
-  const gameId = req.params.gameId;
+router.get('/:id/highlights', (req, res, next) => {
+  const gameId = req.params.id;
   let type = Number(req.query.type);
   let stage = Number(req.query.stage);
   // let fightType = Number(req.query.fightType); // no need currently
@@ -91,6 +91,8 @@ router.get('/:gameId/highlights', (req, res, next) => {
         SELECT
           stream_games.id           AS id,
           stream_games.gameNum      AS gameNum,
+          stream_games.streamId     AS streamId,
+          events.firstEventId       AS firstEventId,
           heroes.name               AS heroName,
           streamers.nickname        AS streamerNickname,
           streams.streamNum         AS streamNum,
@@ -101,6 +103,13 @@ router.get('/:gameId/highlights', (req, res, next) => {
         LEFT JOIN heroes ON stream_games.heroId = heroes.id
         LEFT JOIN streamers ON streamers.id = stream_games.streamerId
         LEFT JOIN streams ON streams.id = stream_games.streamId
+
+        LEFT JOIN (
+          SELECT gameId, MIN(id) AS firstEventId
+          FROM events
+          WHERE type = 1 AND streamerInvolved <> 0
+          GROUP BY gameId
+        ) AS events ON events.gameId = stream_games.id
 
         LEFT JOIN (
           SELECT gameId, killerId, COUNT(id) AS totalCount
@@ -139,6 +148,7 @@ router.get('/:gameId/highlights', (req, res, next) => {
 
         const game = games[0];
 
+        game.hlsThumb = `${config.gameData.thumbPref}/${game.streamId}/${game.firstEventId}.jpg`;
         game.hlsVideo = `${config.gameData.highlightsVideoPref}/${game.streamerNickname}/${game.streamNum}/${game.gameNum}.mp4`;
 
         resolve(game);

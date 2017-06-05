@@ -54,7 +54,7 @@ router.get('/:id/games', (req, res, next) => {
           stream_games.id           AS id,
           stream_games.streamId     AS streamId,
           stream_games.created_at   AS created_at,
-          te.firstEventId           AS firstEventId,
+          events.firstEventId       AS firstEventId,
           allStream_games.totalNum  AS totalNum,
           heroes.name               AS heroName,
           highlights.hlTotalCount   AS hlTotalCount,
@@ -69,7 +69,7 @@ router.get('/:id/games', (req, res, next) => {
           FROM events
           WHERE type = 1 AND streamerInvolved <> 0
           GROUP BY gameId
-        ) AS te ON te.gameId = stream_games.id
+        ) AS events ON events.gameId = stream_games.id
 
         LEFT JOIN (
           SELECT streamId, COUNT(id) AS totalNum
