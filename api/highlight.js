@@ -30,12 +30,12 @@ router.get('/:id/events', (req, res, next) => {
           assistant2Hero.fileName     AS assistant3FileName,
           assistant2Hero.fileName     AS assistant4FileName
         FROM events
-        LEFT JOIN heroes AS killerHero      ON killerHero.id = events.killerId
-        LEFT JOIN heroes AS victimHero      ON victimHero.id = events.victimId
-        LEFT JOIN heroes AS assistant1Hero  ON assistant1Hero.id = events.assistant1
-        LEFT JOIN heroes AS assistant2Hero  ON assistant2Hero.id = events.assistant2
-        LEFT JOIN heroes AS assistant3Hero  ON assistant3Hero.id = events.assistant3
-        LEFT JOIN heroes AS assistant4Hero  ON assistant4Hero.id = events.assistant4
+        LEFT JOIN heroes AS killerHero ON killerHero.id = events.killerId
+        LEFT JOIN heroes AS victimHero ON victimHero.id = events.victimId
+        LEFT JOIN heroes AS assistant1Hero ON assistant1Hero.id = events.assistant1
+        LEFT JOIN heroes AS assistant2Hero ON assistant2Hero.id = events.assistant2
+        LEFT JOIN heroes AS assistant3Hero ON assistant3Hero.id = events.assistant3
+        LEFT JOIN heroes AS assistant4Hero ON assistant4Hero.id = events.assistant4
         WHERE events.highlightId = ${highlightId}
           AND events.type = 1
           AND events.streamerInvolved <> 0

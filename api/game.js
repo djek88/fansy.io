@@ -23,68 +23,6 @@ router.get('/:id/highlights', (req, res, next) => {
     .then(([game, totalCount, highlights]) => res.json({ game, totalCount, highlights }))
     .catch(next);
 
-  function getHighlightsTotalCount() {
-    return new Promise((resolve, reject) => {
-      const sql = `
-        SELECT COUNT(highlights.id) AS totalCount
-        FROM highlights
-        LEFT JOIN stream_games ON stream_games.id = highlights.gameId
-
-        LEFT JOIN (
-          SELECT highlightId, killerId, COUNT(id) AS totalCount
-          FROM events
-          WHERE type = 1 AND streamerInvolved <> 0
-          GROUP BY highlightId
-        ) AS killEvents ON killEvents.highlightId = highlights.id
-                        AND killEvents.killerId = highlights.streamerInvolved
-
-        LEFT JOIN (
-          SELECT highlightId, COUNT(id) AS totalCount,
-             assistant1, assistant2, assistant3, assistant4
-          FROM events
-          WHERE type = 1 AND streamerInvolved <> 0
-          GROUP BY highlightId
-        ) AS assistEvents ON assistEvents.highlightId = highlights.id
-                          AND assistEvents.assistant1 = highlights.streamerInvolved
-                          OR assistEvents.assistant2 = highlights.streamerInvolved
-                          OR assistEvents.assistant3 = highlights.streamerInvolved
-                          OR assistEvents.assistant4 = highlights.streamerInvolved
-
-        LEFT JOIN (
-          SELECT highlightId, victimId, COUNT(id) AS totalCount
-          FROM events
-          WHERE type = 1 AND streamerInvolved <> 0
-          GROUP BY highlightId
-        ) AS deathEvents ON deathEvents.highlightId = highlights.id
-                         AND deathEvents.victimId = highlights.streamerInvolved
-
-        LEFT JOIN (
-          SELECT highlightId, MAX(created_at) AS lastEventTime
-          FROM events
-          WHERE type = 1 AND streamerInvolved <> 0
-          GROUP BY highlightId
-        ) AS events ON events.highlightId = highlights.id
-
-        WHERE highlights.gameId = ${gameId}
-          AND highlights.streamerInvolved <> 0
-          AND highlights.processed = 0
-          ${type === 1 ? `AND killEvents.totalCount > 0` :
-            type === 2 ? `AND deathEvents.totalCount > 0` :
-            type === 3 ? `AND assistEvents.totalCount > 0` : ``}
-          ${stage === 1 ? `AND events.lastEventTime - stream_games.created_at < 900000` :
-            stage === 2 ? `AND events.lastEventTime - stream_games.created_at > 900000` : ``}
-          ${multiKill ? `AND killEvents.totalCount > 1` : ``}
-        GROUP BY highlights.gameId
-      `;
-
-      conn.query(sql, (err, results) => {
-        if (err) return reject(err);
-
-        resolve(results[0] && results[0].totalCount || 0);
-      });
-    });
-  }
-
   function selectGame() {
     return new Promise((resolve, reject) => {
       const sql = `
@@ -112,32 +50,37 @@ router.get('/:id/highlights', (req, res, next) => {
         ) AS events ON events.gameId = stream_games.id
 
         LEFT JOIN (
-          SELECT gameId, killerId, COUNT(id) AS totalCount
+          SELECT gameId, COUNT(id) AS totalCount
           FROM events
-          WHERE type = 1 AND streamerInvolved <> 0
+          LEFT JOIN (SELECT id AS _gameId, heroId FROM stream_games) AS game ON events.gameId = game._gameId
+          WHERE type = 1
+            AND streamerInvolved = game.heroId
+            AND killerId = game.heroId
           GROUP BY gameId
         ) AS killEvents ON killEvents.gameId = stream_games.id
-                          AND killEvents.killerId = stream_games.heroId
 
         LEFT JOIN (
-          SELECT gameId, COUNT(id) AS totalCount,
-             assistant1, assistant2, assistant3, assistant4
+          SELECT gameId, COUNT(id) AS totalCount
           FROM events
-          WHERE type = 1 AND streamerInvolved <> 0
+          LEFT JOIN (SELECT id AS _gameId, heroId FROM stream_games) AS game ON events.gameId = game._gameId
+          WHERE type = 1
+          AND streamerInvolved = game.heroId
+          AND (assistant1 = game.heroId
+            OR assistant2 = game.heroId
+            OR assistant3 = game.heroId
+            OR assistant4 = game.heroId)
           GROUP BY gameId
         ) AS assistEvents ON assistEvents.gameId = stream_games.id
-                          AND assistEvents.assistant1 = stream_games.heroId
-                          OR assistEvents.assistant2 = stream_games.heroId
-                          OR assistEvents.assistant3 = stream_games.heroId
-                          OR assistEvents.assistant4 = stream_games.heroId
 
         LEFT JOIN (
-          SELECT gameId, victimId, COUNT(id) AS totalCount
+          SELECT gameId, COUNT(id) AS totalCount
           FROM events
-          WHERE type = 1 AND streamerInvolved <> 0
+          LEFT JOIN (SELECT id AS _gameId, heroId FROM stream_games) AS game ON events.gameId = game._gameId
+          WHERE type = 1
+            AND streamerInvolved = game.heroId
+            AND victimId = game.heroId
           GROUP BY gameId
         ) AS deathEvents ON deathEvents.gameId = stream_games.id
-                          AND deathEvents.victimId = stream_games.heroId
 
         WHERE stream_games.id = ${gameId}
       `;
@@ -152,6 +95,73 @@ router.get('/:id/highlights', (req, res, next) => {
         game.hlsVideo = `${config.gameData.highlightsVideoPref}/${game.streamerNickname}/${game.streamNum}/${game.gameNum}.mp4`;
 
         resolve(game);
+      });
+    });
+  }
+
+  function getHighlightsTotalCount() {
+    return new Promise((resolve, reject) => {
+      const sql = `
+        SELECT COUNT(highlights.id) AS totalCount
+        FROM highlights
+        LEFT JOIN stream_games ON stream_games.id = highlights.gameId
+
+        LEFT JOIN (
+          SELECT highlightId, COUNT(id) AS totalCount
+          FROM events
+          LEFT JOIN (SELECT id AS _hlId, streamerInvolved FROM highlights) AS highlight ON events.highlightId = highlight._hlId
+          WHERE type = 1
+            AND events.streamerInvolved = highlight.streamerInvolved
+            AND killerId = highlight.streamerInvolved
+          GROUP BY highlightId
+        ) AS killEvents ON killEvents.highlightId = highlights.id
+
+        LEFT JOIN (
+          SELECT highlightId, COUNT(id) AS totalCount
+          FROM events
+          LEFT JOIN (SELECT id AS _hlId, streamerInvolved FROM highlights) AS highlight ON events.highlightId = highlight._hlId
+          WHERE type = 1
+            AND events.streamerInvolved = highlight.streamerInvolved
+            AND (assistant1 = highlight.streamerInvolved
+              OR assistant2 = highlight.streamerInvolved
+              OR assistant3 = highlight.streamerInvolved
+              OR assistant4 = highlight.streamerInvolved)
+          GROUP BY highlightId
+        ) AS assistEvents ON assistEvents.highlightId = highlights.id
+
+        LEFT JOIN (
+          SELECT highlightId, COUNT(id) AS totalCount
+          FROM events
+          LEFT JOIN (SELECT id AS _hlId, streamerInvolved FROM highlights) AS highlight ON events.highlightId = highlight._hlId
+          WHERE type = 1
+            AND events.streamerInvolved = highlight.streamerInvolved
+            AND victimId = highlight.streamerInvolved
+          GROUP BY highlightId
+        ) AS deathEvents ON deathEvents.highlightId = highlights.id
+
+        LEFT JOIN (
+          SELECT highlightId, MAX(created_at) AS lastEventTime
+          FROM events
+          WHERE type = 1 AND streamerInvolved <> 0
+          GROUP BY highlightId
+        ) AS events ON events.highlightId = highlights.id
+
+        WHERE highlights.gameId = ${gameId}
+          AND highlights.streamerInvolved <> 0
+          AND highlights.processed = 0
+          ${type === 1 ? `AND killEvents.totalCount > 0` :
+            type === 2 ? `AND deathEvents.totalCount > 0` :
+            type === 3 ? `AND assistEvents.totalCount > 0` : ``}
+          ${stage === 1 ? `AND events.lastEventTime - stream_games.created_at < 900000` :
+            stage === 2 ? `AND events.lastEventTime - stream_games.created_at > 900000` : ``}
+          ${multiKill ? `AND killEvents.totalCount > 1` : ``}
+        GROUP BY highlights.gameId
+      `;
+
+      conn.query(sql, (err, results) => {
+        if (err) return reject(err);
+
+        resolve(results[0] && results[0].totalCount || 0);
       });
     });
   }
@@ -182,32 +192,37 @@ router.get('/:id/highlights', (req, res, next) => {
         ) AS events ON events.highlightId = highlights.id
 
         LEFT JOIN (
-          SELECT highlightId, killerId, COUNT(id) AS totalCount
+          SELECT highlightId, COUNT(id) AS totalCount
           FROM events
-          WHERE type = 1 AND streamerInvolved <> 0
+          LEFT JOIN (SELECT id AS _hlId, streamerInvolved FROM highlights) AS highlight ON events.highlightId = highlight._hlId
+          WHERE type = 1
+            AND events.streamerInvolved = highlight.streamerInvolved
+            AND killerId = highlight.streamerInvolved
           GROUP BY highlightId
         ) AS killEvents ON killEvents.highlightId = highlights.id
-                          AND killEvents.killerId = highlights.streamerInvolved
 
         LEFT JOIN (
-          SELECT highlightId, COUNT(id) AS totalCount,
-             assistant1, assistant2, assistant3, assistant4
+          SELECT highlightId, COUNT(id) AS totalCount
           FROM events
-          WHERE type = 1 AND streamerInvolved <> 0
+          LEFT JOIN (SELECT id AS _hlId, streamerInvolved FROM highlights) AS highlight ON events.highlightId = highlight._hlId
+          WHERE type = 1
+            AND events.streamerInvolved = highlight.streamerInvolved
+            AND (assistant1 = highlight.streamerInvolved
+              OR assistant2 = highlight.streamerInvolved
+              OR assistant3 = highlight.streamerInvolved
+              OR assistant4 = highlight.streamerInvolved)
           GROUP BY highlightId
         ) AS assistEvents ON assistEvents.highlightId = highlights.id
-                          AND assistEvents.assistant1 = highlights.streamerInvolved
-                          OR assistEvents.assistant2 = highlights.streamerInvolved
-                          OR assistEvents.assistant3 = highlights.streamerInvolved
-                          OR assistEvents.assistant4 = highlights.streamerInvolved
 
         LEFT JOIN (
-          SELECT highlightId, victimId, COUNT(id) AS totalCount
+          SELECT highlightId, COUNT(id) AS totalCount
           FROM events
-          WHERE type = 1 AND streamerInvolved <> 0
+          LEFT JOIN (SELECT id AS _hlId, streamerInvolved FROM highlights) AS highlight ON events.highlightId = highlight._hlId
+          WHERE type = 1
+            AND events.streamerInvolved = highlight.streamerInvolved
+            AND victimId = highlight.streamerInvolved
           GROUP BY highlightId
         ) AS deathEvents ON deathEvents.highlightId = highlights.id
-                          AND deathEvents.victimId = highlights.streamerInvolved
 
         WHERE highlights.gameId = ${gameId}
           AND highlights.streamerInvolved <> 0

@@ -51,18 +51,6 @@ router.get('/events', (req, res, next) => {
     res.json(results);
   });
 });
-router.get('/kill_events', (req, res, next) => {
-  const sql = `
-    SELECT *
-    FROM kill_events
-  `;
-
-  conn.query(sql, (err, results) => {
-    if (err) return next(err);
-
-    res.json(results);
-  });
-});
 router.get('/streamers', (req, res, next) => {
   const sql = `
     SELECT *
