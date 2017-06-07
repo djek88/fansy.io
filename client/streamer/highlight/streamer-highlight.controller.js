@@ -4,7 +4,7 @@ angular
   .module('app.streamer')
   .controller('streamerHighlightController', streamerHighlightController);
 
-function streamerHighlightController($state, highlight, highlightEvents) {
+function streamerHighlightController($state, APP_CONFIG, highlight, highlightEvents) {
   const vm = this;
   const playerInstance = jwplayer("myElement");
 
@@ -15,7 +15,7 @@ function streamerHighlightController($state, highlight, highlightEvents) {
   playerInstance.setup({
       file: vm.highlight.video,
       image: vm.highlight.thumb,
-      autostart: true
+      autostart: APP_CONFIG.highlightModal.autostart
   });
 
   function closePlayer(e) {

@@ -22,4 +22,8 @@ appConfig.streamerGame = {
   itemsPerPage: 15
 };
 
+appConfig.highlightModal = {
+  autostart: false
+};
+
 window.appConfig = appConfig;

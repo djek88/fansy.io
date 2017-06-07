@@ -89,9 +89,11 @@ router.get('/:id/games', (req, res, next) => {
           SELECT gameId, COUNT(id) AS totalCount
           FROM events
           LEFT JOIN (SELECT id AS _gameId, heroId FROM stream_games) AS game ON events.gameId = game._gameId
+          LEFT JOIN (SELECT id AS _heroId, type AS heroType FROM heroes) AS hero ON hero._heroId = events.victimId
           WHERE type = 1
             AND streamerInvolved = game.heroId
             AND killerId = game.heroId
+            AND hero.heroType = 1
           GROUP BY gameId
         ) AS killEvents ON killEvents.gameId = stream_games.id
 
@@ -169,9 +171,11 @@ router.get('/:id/highlights', (req, res, next) => {
           SELECT highlightId, COUNT(id) AS totalCount
           FROM events
           LEFT JOIN (SELECT id AS _hlId, streamerInvolved FROM highlights) AS highlight ON events.highlightId = highlight._hlId
+          LEFT JOIN (SELECT id AS _heroId, type AS heroType FROM heroes) AS hero ON hero._heroId = events.victimId
           WHERE type = 1
             AND events.streamerInvolved = highlight.streamerInvolved
             AND killerId = highlight.streamerInvolved
+            AND hero.herotype = 1
           GROUP BY highlightId
         ) AS killEvents ON killEvents.highlightId = highlights.id
 
@@ -207,7 +211,6 @@ router.get('/:id/highlights', (req, res, next) => {
 
         WHERE highlights.streamerId = ${streamerId}
           AND highlights.streamerInvolved <> 0
-          AND highlights.processed = 0
           ${championId ? `AND highlights.streamerInvolved = ${championId}` : ``}
           ${type === 1 ? `AND killEvents.totalCount > 0` :
             type === 2 ? `AND deathEvents.totalCount > 0` :
@@ -260,9 +263,11 @@ router.get('/:id/highlights', (req, res, next) => {
           SELECT highlightId, COUNT(id) AS totalCount
           FROM events
           LEFT JOIN (SELECT id AS _hlId, streamerInvolved FROM highlights) AS highlight ON events.highlightId = highlight._hlId
+          LEFT JOIN (SELECT id AS _heroId, type AS heroType FROM heroes) AS hero ON hero._heroId = events.victimId
           WHERE type = 1
             AND events.streamerInvolved = highlight.streamerInvolved
             AND killerId = highlight.streamerInvolved
+            AND hero.heroType = 1
           GROUP BY highlightId
         ) AS killEvents ON killEvents.highlightId = highlights.id
 
@@ -291,7 +296,6 @@ router.get('/:id/highlights', (req, res, next) => {
 
         WHERE highlights.streamerId = ${streamerId}
           AND highlights.streamerInvolved <> 0
-          AND highlights.processed = 0
           ${championId ? `AND highlights.streamerInvolved = ${championId}` : ``}
           ${type === 1 ? `AND killEvents.totalCount > 0` :
             type === 2 ? `AND deathEvents.totalCount > 0` :
