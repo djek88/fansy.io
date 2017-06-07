@@ -14,12 +14,23 @@ function streamerGameController($scope, $location, APP_CONFIG, streamerGameServi
   vm.itemsPerPage = APP_CONFIG.streamerGame.itemsPerPage;
   vm.filters = Object.assign({}, $location.search());
 
-  $scope.$watch('vm.filters', function(newValue, oldValue) {
-    $location.search('type', newValue.type ? newValue.type : null);
-    $location.search('stage', newValue.stage ? newValue.stage : null);
-    $location.search('fightType', newValue.fightType ? newValue.fightType : null);
-    $location.search('multiKill', newValue.multiKill === 'true' ? 'true' : null);
-    $location.search('teamFight', newValue.teamFight === 'true' ? 'true' : null);
-    $location.search('page', newValue.page > 1 ? newValue.page : null);
+  $scope.$watch('vm.filters', function(newVal, oldVal) {
+    let isPageChanged = !(newVal.type !== oldVal.type
+                          || newVal.stage !== oldVal.stage
+                          || newVal.fightType !== oldVal.fightType
+                          || newVal.multiKill !== oldVal.multiKill
+                          || newVal.teamFight !== oldVal.teamFight);
+
+    $location.search('champion', newVal.champion ? newVal.champion : null);
+    $location.search('type', newVal.type ? newVal.type : null);
+    $location.search('stage', newVal.stage ? newVal.stage : null);
+    $location.search('fightType', newVal.fightType ? newVal.fightType : null);
+    $location.search('multiKill', newVal.multiKill === 'true' ? 'true' : null);
+    $location.search('teamFight', newVal.teamFight === 'true' ? 'true' : null);
+    $location.search('page', newVal.page > 1 ? newVal.page : null);
+
+    if (!isPageChanged) {
+      $location.search('page', null);
+    }
   }, true);
 }

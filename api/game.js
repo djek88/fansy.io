@@ -170,6 +170,8 @@ router.get('/:id/highlights', (req, res, next) => {
     return new Promise((resolve, reject) => {
       const sql = `
         SELECT
+          events.firstEventTime - stream_games.created_at as test,
+
           highlights.id           AS id,
           highlights.highlightNum AS highlightNum,
           highlights.streamId     AS streamId,
@@ -185,7 +187,11 @@ router.get('/:id/highlights', (req, res, next) => {
         LEFT JOIN stream_games ON stream_games.id = highlights.gameId
 
         LEFT JOIN (
-          SELECT highlightId, MIN(id) AS firstEventId, MAX(created_at) AS lastEventTime
+          SELECT
+            highlightId,
+            MIN(id) AS firstEventId,
+            MIN(created_at) AS firstEventTime,
+            MAX(created_at) AS lastEventTime
           FROM events
           WHERE type = 1 AND streamerInvolved <> 0
           GROUP BY highlightId
@@ -230,10 +236,10 @@ router.get('/:id/highlights', (req, res, next) => {
           ${type === 1 ? `AND killEvents.totalCount > 0` :
             type === 2 ? `AND deathEvents.totalCount > 0` :
             type === 3 ? `AND assistEvents.totalCount > 0` : ``}
-          ${stage === 1 ? `AND events.lastEventTime - stream_games.created_at < 900000` :
-            stage === 2 ? `AND events.lastEventTime - stream_games.created_at > 900000` : ``}
+          ${stage === 1 ? `AND lastEvent.created_at - stream_games.created_at < 900000` :
+            stage === 2 ? `AND lastEvent.created_at - stream_games.created_at > 900000` : ``}
           ${multiKill ? `AND killEvents.totalCount > 1` : ``}
-        ORDER BY highlights.id DESC
+        ORDER BY highlights.id
         LIMIT ${skip}, ${limit}
       `;
 

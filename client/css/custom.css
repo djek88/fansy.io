@@ -86,3 +86,12 @@
 .download-icon:focus {
   color: black;
 }
+
+.w-checkbox, .w-radio {
+  padding-left: 0px;
+}
+
+.w-checkbox .w-checkbox-input,
+.w-radio .w-radio-input {
+  margin-right: 8px;
+}

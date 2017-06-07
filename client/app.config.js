@@ -9,17 +9,17 @@ appConfig.apiRootUrl = serverHost + '/api';
 
 // STREAMER GAMES page
 appConfig.streamerGames = {
-  itemsPerPage: 2
+  itemsPerPage: 15
 };
 
 // STREAMER HIGHLIGHTS page
 appConfig.streamerHighlights = {
-  itemsPerPage: 3
+  itemsPerPage: 15
 }
 
 // GAME HIGHTLIGHTS page
 appConfig.streamerGame = {
-  itemsPerPage: 3
+  itemsPerPage: 15
 };
 
 window.appConfig = appConfig;

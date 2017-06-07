@@ -8,14 +8,20 @@ function streamerHighlightController($state, highlight, highlightEvents) {
   const vm = this;
   const playerInstance = jwplayer("myElement");
 
-  console.log(highlight, highlightEvents);
-
   vm.highlight = highlight;
   vm.highlightEvents = highlightEvents;
-  vm.closePlayer = () => $state.go('^', null, { reload: true });
+  vm.closePlayer = closePlayer;
 
   playerInstance.setup({
       file: vm.highlight.video,
-      image: vm.highlight.thumb
+      image: vm.highlight.thumb,
+      autostart: true
   });
+
+  function closePlayer(e) {
+    if (e.target === e.currentTarget
+      || e.target === document.querySelector('strong.x-text')) {
+      $state.go('^', null, { reload: true });
+    }
+  }
 }

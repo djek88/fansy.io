@@ -61,7 +61,9 @@
             </a>
             <div class="highlight-title text-grid-title w-clearfix">
               <a class="link-h" data-ui-sref=".highlight({ highlightId: highlight.id })">
-                Kills: {{highlight.killScore || 0}}, Assist: {{highlight.assistScore || 0}}<span ng-if="highlight.deathScore">, Death</span>
+                <span ng-if="highlight.killScore">Kills: {{highlight.killScore}}<span ng-if="highlight.assistScore || highlight.deathScore">,</span></span>
+                <span ng-if="highlight.assistScore"> Assist: {{highlight.assistScore}}<span ng-if="highlight.deathScore">,</span></span>
+                <span ng-if="highlight.deathScore"> Death</span>
               </a>
               <a class="download-icon" ng-href="{{highlight.video}}" download="">⬇</a>
             </div>
@@ -76,7 +78,10 @@
             items-per-page="vm.itemsPerPage"
             ng-model="vm.filters.page"
             max-size="4"
-            direction-links="false">
+            direction-links="false"
+            boundary-links="true"
+            first-text="<"
+            last-text=">">
           </ul>
         </div>
       </div>
