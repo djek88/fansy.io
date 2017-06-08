@@ -28,7 +28,7 @@
               <a class="download-icon" ng-href="{{highlight.video}}" download="">⬇</a>
             </div>
             <img class="champ-highlight" ng-src="{{highlight.heroIcon}}" width="30">
-            <div class="text-grid-subtitle">game time: 03:42
+            <div class="text-grid-subtitle">game time: {{vm.msToTimeStr(highlight.gameTime)}}
               <br>{{highlight.gameDate | date:'dd.MM.yyyy'}}</div>
           </div>
         </div>

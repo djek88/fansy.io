@@ -6,28 +6,39 @@
 
     <div class="w-row">
       <div class="w-col w-col-9 w-col-stack">
-        <!-- <div class="b-game-info">
-          <div class="game-date"><span class="text-span-2">Game time: 35:40</span>
+        <div class="b-game-info">
+          <div class="game-date"><span class="text-span-2">Game time: {{vm.msToTimeStr(vm.game.gameTime)}}</span>
           </div>
           <div class="team-vs-team">
-            <div class="b-game-team"><img class="image-icon" src="images/Renekton.png" width="30"><img class="image-icon" src="images/Renekton.png" width="30"><img class="image-icon" src="images/Renekton.png" width="30"><img class="image-icon" src="images/Renekton.png" width="30"><img class="image-icon" src="images/Renekton.png" width="30">
-            </div><img class="icon-vs image-icon" src="images/swords.png" width="16">
-            <div class="b-game-team"><img class="image-icon" src="images/Renekton.png" width="30"><img class="image-icon" src="images/Renekton.png" width="30"><img class="image-icon" src="images/Renekton.png" width="30"><img class="image-icon" src="images/Renekton.png" width="30"><img class="image-icon" src="images/Renekton.png" width="30">
+            <div class="b-game-team">
+              <img class="image-icon" ng-if="vm.game.team1Hero1Icon" ng-src="{{vm.game.team1Hero1Icon}}" width="30">
+              <img class="image-icon" ng-if="vm.game.team1Hero2Icon" ng-src="{{vm.game.team1Hero2Icon}}" width="30">
+              <img class="image-icon" ng-if="vm.game.team1Hero3Icon" ng-src="{{vm.game.team1Hero3Icon}}" width="30">
+              <img class="image-icon" ng-if="vm.game.team1Hero4Icon" ng-src="{{vm.game.team1Hero4Icon}}" width="30">
+              <img class="image-icon" ng-if="vm.game.team1Hero5Icon" ng-src="{{vm.game.team1Hero5Icon}}" width="30">
+            </div>
+            <img class="icon-vs image-icon" src="images/swords.png" width="16">
+            <div class="b-game-team">
+              <img class="image-icon" ng-if="vm.game.team2Hero1Icon" ng-src="{{vm.game.team2Hero1Icon}}" width="30">
+              <img class="image-icon" ng-if="vm.game.team2Hero2Icon" ng-src="{{vm.game.team2Hero2Icon}}" width="30">
+              <img class="image-icon" ng-if="vm.game.team2Hero3Icon" ng-src="{{vm.game.team2Hero3Icon}}" width="30">
+              <img class="image-icon" ng-if="vm.game.team2Hero4Icon" ng-src="{{vm.game.team2Hero4Icon}}" width="30">
+              <img class="image-icon" ng-if="vm.game.team2Hero5Icon" ng-src="{{vm.game.team2Hero5Icon}}" width="30">
             </div>
           </div>
           <div class="info-el">
             <div class="info-name">KILLS</div>
-            <div class="info-value">20</div>
-          </div>
-          <div class="info-el">
-            <div class="info-name">DEATHS</div>
-            <div class="info-value">7</div>
+            <div class="info-value">{{vm.game.killScore || 0}}</div>
           </div>
           <div class="info-el">
             <div class="info-name">ASSISTS</div>
-            <div class="info-value">24</div>
+            <div class="info-value">{{vm.game.assistScore || 0}}</div>
           </div>
           <div class="info-el">
+            <div class="info-name">DEATHS</div>
+            <div class="info-value">{{vm.game.deathScore || 0}}</div>
+          </div>
+          <!-- <div class="info-el">
             <div class="info-name">BARONS</div>
             <div class="info-value">2</div>
           </div>
@@ -38,8 +49,8 @@
           <div class="info-el">
             <div class="info-name">TOWERS</div>
             <div class="info-value">12</div>
-          </div>
-        </div> -->
+          </div> -->
+        </div>
       </div>
       <div class="column-3 w-col w-col-3 w-col-stack">
         <div class="b-moments">
@@ -67,7 +78,7 @@
               </a>
               <a class="download-icon" ng-href="{{highlight.video}}" download="">⬇</a>
             </div>
-            <div class="text-grid-subtitle">game time: 05:42</div>
+            <div class="text-grid-subtitle">game time: {{vm.msToTimeStr(highlight.gameTime)}}</div>
           </div>
         </div>
 
