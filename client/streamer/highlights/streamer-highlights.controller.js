@@ -7,10 +7,6 @@ angular
 function streamerHighlightsController($scope, $location, APP_CONFIG, streamerHighlightsService, streamer, highlightsData, champions) {
   const vm = this;
 
-  for (var i = 0; i < highlightsData.highlights.length; i++) {///////////////
-    highlightsData.highlights[i].gameTime = 20000 * (i + 1);
-  }
-
   vm.streamer = streamer;
   vm.highlights = highlightsData.highlights;
   vm.champions = champions;

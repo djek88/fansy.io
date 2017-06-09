@@ -228,7 +228,7 @@ router.get('/:id/highlights', (req, res, next) => {
           highlights.highlightNum                                   AS highlightNum,
           highlights.streamId                                       AS streamId,
           streams.streamNum                                         AS streamNum,
-          #(events.firstEventTime - 5000) - stream_games.created_at AS gameTime,
+          highlights.game_time                                      AS gameTime,
           streamers.nickname                                        AS streamerNickname,
           events.firstEventId                                       AS firstEventId,
           killEvents.totalCount                                     AS killScore,
@@ -243,7 +243,6 @@ router.get('/:id/highlights', (req, res, next) => {
           SELECT
             highlightId,
             MIN(id) AS firstEventId,
-            MIN(created_at) AS firstEventTime,
             MAX(created_at) AS lastEventTime
           FROM events
           WHERE type = 1 AND streamerInvolved <> 0

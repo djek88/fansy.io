@@ -38,7 +38,6 @@ router.get('/:id/events', (req, res, next) => {
         LEFT JOIN heroes AS assistant4Hero ON assistant4Hero.id = events.assistant4
         WHERE events.highlightId = ${highlightId}
           AND events.type = 1
-          AND events.streamerInvolved <> 0
         ORDER BY events.created_at
       `;
 

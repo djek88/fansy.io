@@ -16,7 +16,7 @@
         <a class="w-inline-block" ui-sref="app.streamer.game({ gameId: game.id })"><img class="image-game" ng-src="{{game.thumb}}">
         </a>
         <div class="text-grid-title">
-          <a class="link-h" ui-sref="app.streamer.game({ gameId: game.id })">{{game.heroName}} {{game.killScore || 0}}/{{game.assistScore || 0}}/{{game.deathScore || 0}}</a>
+          <a class="link-h" ui-sref="app.streamer.game({ gameId: game.id })">{{game.heroName}} {{game.killScore || 0}}/{{game.deathScore || 0}}/{{game.assistScore || 0}}</a>
         </div>
         <div class="text-grid-subtitle">{{game.created_at | date:'dd.MM.yyyy'}}, <strong>{{game.hlTotalCount}}</strong> highlights</div>
       </div>

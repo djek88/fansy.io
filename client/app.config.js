@@ -23,7 +23,7 @@ appConfig.streamerGame = {
 };
 
 appConfig.highlightModal = {
-  autostart: false
+  autostart: true
 };
 
 window.appConfig = appConfig;

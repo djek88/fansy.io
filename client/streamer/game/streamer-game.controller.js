@@ -7,11 +7,6 @@ angular
 function streamerGameController($scope, $location, APP_CONFIG, streamerGameService, streamer, gameHighlights) {
   const vm = this;
 
-  gameHighlights.game.gameTime = 2115000;/////////////////////////
-  for (var i = 0; i < gameHighlights.highlights.length; i++) {///////////////
-    gameHighlights.highlights[i].gameTime = 20000 * (i + 1);
-  }
-
   vm.streamer = streamer;
   vm.game = gameHighlights.game;
   vm.highlights = gameHighlights.highlights;

@@ -1,7 +1,7 @@
 <div>
   <div class="c-content w-container">
     <div class="b-header">
-      <div class="text-breadcrumbs"><a data-ui-sref="^.games" class="link-breadcrumbs">{{vm.streamer.nickname}}</a> <span class="text-span">/</span> {{vm.game.heroName}} {{vm.game.killScore || 0}}/{{vm.game.assistScore || 0}}/{{vm.game.deathScore || 0}}</div>
+      <div class="text-breadcrumbs"><a data-ui-sref="^.games" class="link-breadcrumbs">{{vm.streamer.nickname}}</a> <span class="text-span">/</span> {{vm.game.heroName}} {{vm.game.killScore || 0}}/{{vm.game.deathScore || 0}}/{{vm.game.assistScore || 0}}</div>
     </div>
 
     <div class="w-row">
@@ -31,12 +31,12 @@
             <div class="info-value">{{vm.game.killScore || 0}}</div>
           </div>
           <div class="info-el">
-            <div class="info-name">ASSISTS</div>
-            <div class="info-value">{{vm.game.assistScore || 0}}</div>
-          </div>
-          <div class="info-el">
             <div class="info-name">DEATHS</div>
             <div class="info-value">{{vm.game.deathScore || 0}}</div>
+          </div>
+          <div class="info-el">
+            <div class="info-name">ASSISTS</div>
+            <div class="info-value">{{vm.game.assistScore || 0}}</div>
           </div>
           <!-- <div class="info-el">
             <div class="info-name">BARONS</div>
