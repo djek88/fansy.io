@@ -14,8 +14,6 @@ function streamerHighlightsController($scope, $location, APP_CONFIG, streamerHig
   vm.itemsPerPage = APP_CONFIG.streamerHighlights.itemsPerPage;
   vm.filters = Object.assign({}, $location.search());
 
-  vm.msToTimeStr = msToTimeStr;
-
   $scope.$watch('vm.filters', function(newVal, oldVal) {
     let isChampionChanged = newVal.champion !== oldVal.champion;
     let isPageChanged = !(newVal.champion !== oldVal.champion
@@ -45,15 +43,4 @@ function streamerHighlightsController($scope, $location, APP_CONFIG, streamerHig
       $location.search('page', null);
     }
   }, true);
-
-  function msToTimeStr(ms) {
-    const seconds = ms / 1000;
-
-    let min = parseInt(seconds / 60).toString();
-    let sec = parseInt(seconds % 60).toString();
-    min = min.length == 1 ? '0' + min : min;
-    sec = sec.length == 1 ? '0' + sec : sec;
-
-    return `${min}:${sec}`;
-  }
 }

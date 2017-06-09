@@ -38,6 +38,9 @@ router.get('/:id/highlights', (req, res, next) => {
           killEvents.totalCount                             AS killScore,
           assistEvents.totalCount                           AS assistScore,
           deathEvents.totalCount                            AS deathScore,
+          baronKillEvents.totalCount                        AS baronKillScore,
+          dragonKillEvents.totalCount                       AS dragonKillScore,
+          towerKillEvents.totalCount                        AS towerKillScore,
           team1Hero1.fileName                               AS team1Hero1FileName,
           team1Hero2.fileName                               AS team1Hero2FileName,
           team1Hero3.fileName                               AS team1Hero3FileName,
@@ -108,6 +111,42 @@ router.get('/:id/highlights', (req, res, next) => {
             AND killer.heroType = 1
           GROUP BY gameId
         ) AS deathEvents ON deathEvents.gameId = stream_games.id
+
+        LEFT JOIN (
+          SELECT gameId, COUNT(id) AS totalCount
+          FROM events
+          LEFT JOIN (SELECT id AS _gameId, heroId FROM stream_games) AS game ON events.gameId = game._gameId
+          LEFT JOIN (SELECT id AS _heroId, type AS heroType FROM heroes) AS victim ON victim._heroId = events.victimId
+          WHERE type = 1
+            AND streamerInvolved = game.heroId
+            AND killerId = game.heroId
+            AND victim.heroType = 2
+          GROUP BY gameId
+        ) AS baronKillEvents ON baronKillEvents.gameId = stream_games.id
+
+        LEFT JOIN (
+          SELECT gameId, COUNT(id) AS totalCount
+          FROM events
+          LEFT JOIN (SELECT id AS _gameId, heroId FROM stream_games) AS game ON events.gameId = game._gameId
+          LEFT JOIN (SELECT id AS _heroId, type AS heroType FROM heroes) AS victim ON victim._heroId = events.victimId
+          WHERE type = 1
+            AND streamerInvolved = game.heroId
+            AND killerId = game.heroId
+            AND victim.heroType = 3
+          GROUP BY gameId
+        ) AS dragonKillEvents ON dragonKillEvents.gameId = stream_games.id
+
+        LEFT JOIN (
+          SELECT gameId, COUNT(id) AS totalCount
+          FROM events
+          LEFT JOIN (SELECT id AS _gameId, heroId FROM stream_games) AS game ON events.gameId = game._gameId
+          LEFT JOIN (SELECT id AS _heroId, type AS heroType FROM heroes) AS victim ON victim._heroId = events.victimId
+          WHERE type = 1
+            AND streamerInvolved = game.heroId
+            AND killerId = game.heroId
+            AND victim.heroType = 4
+          GROUP BY gameId
+        ) AS towerKillEvents ON towerKillEvents.gameId = stream_games.id
 
         WHERE stream_games.id = ${gameId}
       `;

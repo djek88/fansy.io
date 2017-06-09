@@ -14,8 +14,6 @@ function streamerGameController($scope, $location, APP_CONFIG, streamerGameServi
   vm.itemsPerPage = APP_CONFIG.streamerGame.itemsPerPage;
   vm.filters = Object.assign({}, $location.search());
 
-  vm.msToTimeStr = msToTimeStr;
-
   $scope.$watch('vm.filters', function(newVal, oldVal) {
     let isPageChanged = !(newVal.type !== oldVal.type
                           || newVal.stage !== oldVal.stage
@@ -35,15 +33,4 @@ function streamerGameController($scope, $location, APP_CONFIG, streamerGameServi
       $location.search('page', null);
     }
   }, true);
-
-  function msToTimeStr(ms) {
-    const seconds = ms / 1000;
-
-    let min = parseInt(seconds / 60).toString();
-    let sec = parseInt(seconds % 60).toString();
-    min = min.length == 1 ? '0' + min : min;
-    sec = sec.length == 1 ? '0' + sec : sec;
-
-    return `${min}:${sec}`;
-  }
 }

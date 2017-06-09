@@ -7,7 +7,7 @@
     <div class="w-row">
       <div class="w-col w-col-9 w-col-stack">
         <div class="b-game-info">
-          <div class="game-date"><span class="text-span-2">Game time: {{vm.msToTimeStr(vm.game.gameTime)}}</span>
+          <div class="game-date"><span class="text-span-2">Game time: {{vm.game.gameTime|gameTime}}</span>
           </div>
           <div class="team-vs-team">
             <div class="b-game-team">
@@ -38,18 +38,18 @@
             <div class="info-name">ASSISTS</div>
             <div class="info-value">{{vm.game.assistScore || 0}}</div>
           </div>
-          <!-- <div class="info-el">
+          <div class="info-el" ng-if="vm.game.baronKillScore">
             <div class="info-name">BARONS</div>
-            <div class="info-value">2</div>
+            <div class="info-value">{{vm.game.baronKillScore || 0}}</div>
           </div>
-          <div class="info-el">
+          <div class="info-el" ng-if="vm.game.dragonKillScore">
             <div class="info-name">DRAGONS</div>
-            <div class="info-value">5</div>
+            <div class="info-value">{{vm.game.dragonKillScore || 0}}</div>
           </div>
-          <div class="info-el">
+          <div class="info-el" ng-if="vm.game.towerKillScore">
             <div class="info-name">TOWERS</div>
-            <div class="info-value">12</div>
-          </div> -->
+            <div class="info-value">{{vm.game.towerKillScore || 0}}</div>
+          </div>
         </div>
       </div>
       <div class="column-3 w-col w-col-3 w-col-stack">
