@@ -32,6 +32,35 @@
   <link href="images/favicon.png" rel="shortcut icon" type="image/x-icon">
   <link href="images/webclip.png" rel="apple-touch-icon">
   <script src="https://content.jwplatform.com/libraries/fACZw8Y9.js"></script>
+
+  <!-- Application Configuration File -->
+  <script src="app.config.js" type="text/javascript"></script>
+  <!-- end Application Configuration File-->
+
+  <!-- Google Analytics -->
+  <script>
+  window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+  ga('create', window.appConfig.gaTrackingID, 'auto');
+
+  ga('require', 'urlChangeTracker');
+  ga('require', 'eventTracker', {
+    events: ['click', 'auxclick', 'contextmenu', 'change'],
+    hitFilter: function(model, element, event) {
+      // get eventAction from attribute or event.type
+      let type = element.getAttribute('ga-event-action') || event.type;
+      model.set('eventAction', type, true);
+    }
+  });
+  ga('require', 'outboundLinkTracker', {
+    events: ['click', 'auxclick', 'contextmenu'],
+    linkSelector: '.js-track-outbound-link'
+  });
+
+  ga('send', 'pageview');
+  </script>
+  <script async src="https://www.google-analytics.com/analytics.js"></script>
+  <script async src="js/autotrack.js"></script>
+  <!-- End Google Analytics -->
 </head>
 <body class="body" smart-page-title="Fansy.ai">
 
@@ -52,7 +81,6 @@
   <!-- end VENDOR scripts -->
 
   <!-- APPLICATION scripts -->
-    <script src="app.config.js" type="text/javascript"></script>
     <script src="main.js" type="text/javascript"></script>
     <script src="app.js" type="text/javascript"></script>
     <!-- common module -->

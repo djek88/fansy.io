@@ -5,9 +5,9 @@
   $(document).ready(function() {
     // workaround
     $('.demo-anchor').click(function() {
-        $('html, body').animate({
-            scrollTop: $(".demo-block").offset().top
-        }, 1000);
+      $('html, body').animate({
+          scrollTop: $(".demo-block").offset().top
+      }, 1000);
     });
 
     // throw error
@@ -22,15 +22,16 @@
   <div class="bgvideo-overlay">
     <div class="s-promo-header">
       <div class="promo-container w-container"><a class="link-block-logo w-inline-block" data-ui-sref="app.landing"><h1 class="text-logo-mainpage text-logo-small">fansy.ai</h1></a>
-        <a class="promo-link-block w-inline-block" href="mailto:kk@fansy.io">
+        <a class="promo-link-block w-inline-block" ga-on="click,auxclick,contextmenu" ga-event-category="contact_us_click" href="mailto:kk@fansy.io">
           <div class="promo-nav">Contact Us</div>
         </a>
-        <a class="demo-anchor promo-link-block w-inline-block" href="#demo-block">
+        <a class="demo-anchor promo-link-block w-inline-block" ga-on="click,auxclick,contextmenu" ga-event-category="demo_click"  href="#demo-block">
           <div class="promo-nav">Demo</div>
         </a>
       </div>
     </div>
-    <h1 class="promo-header">AI that creaTes video gaming highlights</h1><a class="join-btn w-button" href="https://fansyai.typeform.com/to/cgmFN2">Join Private Beta</a>
+    <h1 class="promo-header">AI that creaTes video gaming highlights</h1>
+    <a class="join-btn w-button js-track-outbound-link" ga-event-category="join_beta_click" href="https://fansyai.typeform.com/to/cgmFN2">Join Private Beta</a>
   </div>
 </div>
 
@@ -51,5 +52,5 @@
     </div>
   </div>
   <div class="demo-block mainpage-subtitle" id="demo-block">SOME DEMONSTRATION</div>
-  <div class="demo-text howto-text">Here's the demo of Fansy making highlights for Twitch streamers, <a data-ui-sref="app.streamer.games({ nickname: 'imaqtpie' })" class="link">Imaqtpie</a> and <a data-ui-sref="app.streamer.games({ nickname: 'faker' })" class="link">Faker</a>, in real-time.</div>
+  <div class="demo-text howto-text">Here's the demo of Fansy making highlights for Twitch streamers, <a class="link" data-ui-sref="app.streamer.games({ nickname: 'imaqtpie' })" ga-on="click,auxclick,contextmenu" ga-event-category="streamer_demo_click" >Imaqtpie</a> and <a class="link" data-ui-sref="app.streamer.games({ nickname: 'faker' })" ga-on="click,auxclick,contextmenu" ga-event-category="streamer_demo_click" >Faker</a>, in real-time.</div>
 </div>

@@ -15,7 +15,7 @@
       </div>
       <div class="popup-info">
         <div class="game-date">
-          <a ng-if="vm.highlight.gameId" ui-sref="app.streamer.game({ gameId: vm.highlight.gameId })" class="popup-link">{{vm.highlight.heroName}} — {{vm.highlight.gameDate | date:'dd.MM.yyyy'}} <span ng-if="vm.highlight.gameTime">|</span></a>
+          <a class="popup-link" ng-if="vm.highlight.gameId" ui-sref="app.streamer.game({ gameId: vm.highlight.gameId })" ga-on="click,auxclick,contextmenu" ga-event-category="popup_game_click" >{{vm.highlight.heroName}} — {{vm.highlight.gameDate | date:'dd.MM.yyyy'}} <span ng-if="vm.highlight.gameTime">|</span></a>
           <span ng-if="vm.highlight.gameTime" class="text-span-2">Game time: {{vm.highlight.gameTime}}</span>
         </div>
       </div>

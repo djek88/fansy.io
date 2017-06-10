@@ -16,16 +16,16 @@
       <div class="w-col w-col-9 w-col-stack">
         <div class="w-row">
           <div class="w-col w-col-4" ng-repeat="highlight in vm.highlights">
-            <a class="w-inline-block" ui-sref="app.streamer.highlights.highlight({ highlightId: highlight.id })">
+            <a class="w-inline-block" ui-sref=".highlight({ highlightId: highlight.id })" ga-on="click,auxclick,contextmenu" ga-event-category="highlight_click">
               <img class="image-highlight" ng-src="{{highlight.thumb}}" width="228">
             </a>
             <div class="highlight-title text-grid-title w-clearfix">
-              <a class="link-h" ui-sref="app.streamer.highlights.highlight({ highlightId: highlight.id })">
+              <a class="link-h" ui-sref=".highlight({ highlightId: highlight.id })" ga-on="click,auxclick,contextmenu" ga-event-category="highlight_click">
                 <span ng-if="highlight.killScore">Kills: {{highlight.killScore}}<span ng-if="highlight.assistScore || highlight.deathScore">,</span></span>
                 <span ng-if="highlight.assistScore"> Assist: {{highlight.assistScore}}<span ng-if="highlight.deathScore">,</span></span>
                 <span ng-if="highlight.deathScore"> Death</span>
               </a>
-              <a class="download-icon" ng-href="{{highlight.video}}" download="">⬇</a>
+              <a class="download-icon" ng-href="{{highlight.video}}" download="" ga-on="click,auxclick,contextmenu" ga-event-category="highlight_downloaded">⬇</a>
             </div>
             <img class="champ-highlight" ng-src="{{highlight.heroIcon}}" width="30">
             <div class="text-grid-subtitle">game time: {{highlight.gameTime|gameTime}}
@@ -53,14 +53,14 @@
           <div class="filter-form w-form">
             <form data-name="Email_Form" id="email-form" name="email-form">
               <label class="field-label-2" for="All">Champion</label>
-              <select class="select-field-2 w-select" ng-model="vm.filters.champion" data-name="All" id="All" name="All">
+              <select class="select-field-2 w-select" ng-model="vm.filters.champion" data-name="All" id="All" name="All" ga-on="change" ga-event-category="filter_changed">
                 <option value="">All champs</option>
                 <!-- ng-option don't work properly due to strict types comparison -->
                 <option ng-repeat="champion in vm.champions" value="{{champion.id}}">{{champion.name}}</option>
               </select>
 
               <label class="field-label-2" for="field">Type</label>
-              <select class="select-field-2 w-select" ng-model="vm.filters.type" id="field" name="field">
+              <select class="select-field-2 w-select" ng-model="vm.filters.type" id="field" name="field" ga-on="change" ga-event-category="filter_changed">
                 <option value="">All types</option>
                 <option value="1">Kill</option>
                 <option value="2">Death</option>
@@ -68,14 +68,14 @@
               </select>
 
               <label class="field-label-2" for="field-2">Stage</label>
-              <select class="select-field-3 w-select" ng-model="vm.filters.stage" data-name="Field 2" id="field-2" name="field-2">
+              <select class="select-field-3 w-select" ng-model="vm.filters.stage" data-name="Field 2" id="field-2" name="field-2" ga-on="change" ga-event-category="filter_changed">
                 <option value="">All time</option>
                 <option value="1">Early game</option>
                 <option value="2">Late game</option>
               </select>
 
               <!-- <label class="field-label-2" for="field-3">Fight types</label>
-              <select class="select-field-4 w-select" ng-model="vm.filters.fightType" data-name="Field 3" id="field-3" name="field-3">
+              <select class="select-field-4 w-select" ng-model="vm.filters.fightType" data-name="Field 3" id="field-3" name="field-3" ga-on="change" ga-event-category="filter_changed">
                 <option value="">All types</option>
                 <option value="2">Double kill</option>
                 <option value="3">Tripple kill</option>
@@ -84,12 +84,12 @@
               </select> -->
 
               <div class="checkbox-field w-checkbox w-clearfix">
-                <input class="w-checkbox-input" ng-model="vm.filters.multiKill" ng-true-value="'true'" data-name="Checkbox" id="checkbox" name="checkbox" type="checkbox">
+                <input class="w-checkbox-input" ng-model="vm.filters.multiKill" ng-true-value="'true'" data-name="Checkbox" id="checkbox" name="checkbox" type="checkbox" ga-on="change" ga-event-category="filter_changed">
                 <label class="field-label-4 w-form-label" for="checkbox">Multi-kill</label>
               </div>
 
               <!-- <div class="w-checkbox w-clearfix">
-                <input class="w-checkbox-input" ng-model="vm.filters.teamFight" ng-true-value="'true'" data-name="Checkbox 3" id="checkbox-3" name="checkbox-3" type="checkbox">
+                <input class="w-checkbox-input" ng-model="vm.filters.teamFight" ng-true-value="'true'" data-name="Checkbox 3" id="checkbox-3" name="checkbox-3" type="checkbox" ga-on="change" ga-event-category="filter_changed">
                 <label class="field-label-4 w-form-label" for="checkbox-3">Team fight</label>
               </div> -->
             </form>
