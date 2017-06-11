@@ -5,6 +5,7 @@ const appConfig = window.appConfig || {};
 const serverHost = 'http://localhost:8000';
 
 appConfig.gaTrackingID = 'UA-XXXXX-Y';
+appConfig.yandexMetricaId = 44951296;
 
 // appConfig.socketUrl = serverHost;
 appConfig.apiRootUrl = serverHost + '/api';
