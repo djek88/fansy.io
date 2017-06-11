@@ -67,7 +67,15 @@ function config($locationProvider, $httpProvider, $stateProvider, $urlRouterProv
   $urlRouterProvider.otherwise('/');
 }
 
-function run($rootScope, $state, APP_CONFIG) {
+function run($rootScope, $location, $state, APP_CONFIG) {
+  // yandex metrica
+  let path = $location.path();
+  $rootScope.$on('$stateChangeSuccess', (event, toState, toParams, fromState, fromParams) => {
+    let newPath = $location.path();
+    window.yaCounter.hit(newPath, { referer: path });
+    path = newPath;
+  });
+
   $rootScope.$on('$stateChangeError', (event, toState, toParams, fromState, fromParams, error) => {
     if (!fromState.name) $state.go('app.landing');
   });
