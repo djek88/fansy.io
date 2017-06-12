@@ -68,7 +68,7 @@ function config($locationProvider, $httpProvider, $stateProvider, $urlRouterProv
 }
 
 function run($rootScope, $location, $state, APP_CONFIG) {
-  // yandex metrica
+  // hack for working yandex metrica webvisor with ui-router
   let path = $location.path();
   $rootScope.$on('$stateChangeSuccess', (event, toState, toParams, fromState, fromParams) => {
     let newPath = $location.path();
