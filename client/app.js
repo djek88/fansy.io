@@ -72,7 +72,7 @@ function run($rootScope, $location, $state, APP_CONFIG) {
   let path = $location.path();
   $rootScope.$on('$stateChangeSuccess', (event, toState, toParams, fromState, fromParams) => {
     let newPath = $location.path();
-    window.yaCounter.hit(newPath, { referer: path });
+    window.yaCounter && window.yaCounter.hit(newPath, { referer: path });
     path = newPath;
   });
 
