@@ -30,7 +30,7 @@ router.get('/:id/highlights', (req, res, next) => {
           stream_games.id                                   AS id,
           stream_games.gameNum                              AS gameNum,
           stream_games.streamId                             AS streamId,
-          #stream_games.updated_at - stream_games.created_at AS gameTime,
+          stream_games.updated_at - stream_games.created_at AS gameTime,
           events.firstEventId                               AS firstEventId,
           heroes.name                                       AS heroName,
           streamers.nickname                                AS streamerNickname,

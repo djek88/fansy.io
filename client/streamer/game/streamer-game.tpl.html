@@ -78,7 +78,7 @@
               </a>
               <a class="download-icon" ng-href="{{highlight.video}}" download="" ga-on="click,auxclick,contextmenu" ga-event-category="highlight_downloaded">⬇</a>
             </div>
-            <div class="text-grid-subtitle">game time: {{vm.msToTimeStr(highlight.gameTime)}}</div>
+            <div class="text-grid-subtitle">game time: {{highlight.gameTime|gameTime}}</div>
           </div>
         </div>
 
