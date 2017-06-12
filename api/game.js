@@ -30,8 +30,10 @@ router.get('/:id/highlights', (req, res, next) => {
           stream_games.id                                   AS id,
           stream_games.gameNum                              AS gameNum,
           stream_games.streamId                             AS streamId,
-          stream_games.updated_at - stream_games.created_at AS gameTime,
-          events.firstEventId                               AS firstEventId,
+          stream_games.created_at                           AS createdAt,
+          stream_games.updated_at                           AS updatedAt,
+          stream_games.status = 0                           AS isFinished,
+          events.lastEventId                                AS lastEventId,
           heroes.name                                       AS heroName,
           streamers.nickname                                AS streamerNickname,
           streams.streamNum                                 AS streamNum,
@@ -67,7 +69,7 @@ router.get('/:id/highlights', (req, res, next) => {
         LEFT JOIN heroes AS team2Hero5 ON team2Hero5.id = stream_games.team2hero5
 
         LEFT JOIN (
-          SELECT gameId, MIN(id) AS firstEventId
+          SELECT gameId, MAX(id) AS lastEventId
           FROM events
           WHERE type = 1 AND streamerInvolved <> 0
           GROUP BY gameId
@@ -156,8 +158,9 @@ router.get('/:id/highlights', (req, res, next) => {
         if (!games[0]) return reject(new HttpError(404))
 
         const game = games[0];
+        game.gameTime = game.updatedAt - game.createdAt;
 
-        game.hlsThumb = `${config.gameData.thumbPref}/${game.streamId}/${game.firstEventId}.jpg`;
+        game.hlsThumb = `${config.gameData.thumbPref}/${game.streamId}/${game.lastEventId}.jpg`;
         game.hlsVideo = `${config.gameData.highlightsVideoPref}/${game.streamerNickname}/${game.streamNum}/${game.gameNum}.mp4`;
 
         game.team1Hero1Icon = game.team1Hero1FileName ? `${config.heroData.iconPref}/${game.team1Hero1FileName}.png` : null;

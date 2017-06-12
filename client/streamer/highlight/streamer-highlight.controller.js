@@ -11,6 +11,7 @@ function streamerHighlightController($state, APP_CONFIG, highlight, highlightEve
   vm.highlight = highlight;
   vm.highlightEvents = highlightEvents;
   vm.closePlayer = closePlayer;
+  vm.isAllHighlightsInOne = $state.is('app.streamer.game.allHighlightsInOne');
 
   playerInstance.setup({
       file: vm.highlight.video,

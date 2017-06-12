@@ -8,15 +8,20 @@
 
     <div class="popup-header w-clearfix">
       <a class="popup-download-link" ng-href="{{vm.highlight.video}}" download="">⬇ Download highlight<!--  (5 Mb) --></a>
-      <div class="popup-title">
+      <div class="popup-title" ng-if="!vm.isAllHighlightsInOne">
         <span ng-if="vm.highlight.killScore">Kills: {{vm.highlight.killScore}}<span ng-if="vm.highlight.assistScore || vm.highlight.deathScore">,</span></span>
         <span ng-if="vm.highlight.assistScore"> Assist: {{vm.highlight.assistScore}}<span ng-if="vm.highlight.deathScore">,</span></span>
         <span ng-if="vm.highlight.deathScore"> Death</span>
       </div>
+      <div class="popup-title" ng-if="vm.isAllHighlightsInOne">
+        <span ng-if="vm.highlight.killScore">Kills: {{vm.highlight.killScore}}<span ng-if="vm.highlight.assistScore || vm.highlight.deathScore">,</span></span>
+        <span ng-if="vm.highlight.deathScore"> Death: {{vm.highlight.deathScore}}<span ng-if="vm.highlight.assistScore">,</span></span>
+        <span ng-if="vm.highlight.assistScore"> Assist: {{vm.highlight.assistScore}}</span>
+      </div>
       <div class="popup-info">
         <div class="game-date">
-          <a class="popup-link" ng-if="vm.highlight.gameId" ui-sref="app.streamer.game({ gameId: vm.highlight.gameId })" ga-on="click,auxclick,contextmenu" ga-event-category="popup_game_click" >{{vm.highlight.heroName}} — {{vm.highlight.gameDate | date:'dd.MM.yyyy'}} <span ng-if="vm.highlight.gameTime">|</span></a>
-          <span ng-if="vm.highlight.gameTime" class="text-span-2">Game time: {{vm.highlight.gameTime}}</span>
+          <a class="popup-link" ng-if="vm.highlight.gameId" ui-sref="app.streamer.game({ gameId: vm.highlight.gameId })" ga-on="click,auxclick,contextmenu" ga-event-category="popup_game_click">{{vm.highlight.heroName}} — {{vm.highlight.gameDate | date:'dd.MM.yyyy'}} <span ng-if="vm.highlight.gameTime">|</span></a>
+          <span ng-if="vm.highlight.gameTime" class="text-span-2">Game time: {{vm.highlight.gameTime|gameTime}}</span>
         </div>
       </div>
     </div>

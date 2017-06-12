@@ -111,8 +111,7 @@ function config($stateProvider) {
                 heroName: null,
                 gameId: null,
                 gameDate: null,
-                gameTime: null,
-                events: null
+                gameTime: highlights[i].gameTime
               };
             }
           }
@@ -146,8 +145,7 @@ function config($stateProvider) {
           heroName: null,
           gameId: null,
           gameDate: null,
-          gameTime: null,
-          events: null
+          gameTime: null
         }),
         highlightEvents: () => []
       }
@@ -215,8 +213,7 @@ function config($stateProvider) {
                 heroName: highlights[i].heroName,
                 gameId: highlights[i].gameId,
                 gameDate: highlights[i].gameDate,
-                gameTime: null,
-                events: null
+                gameTime: highlights[i].gameTime
               };
             }
           }
