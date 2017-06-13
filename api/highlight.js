@@ -27,8 +27,8 @@ router.get('/:id/events', (req, res, next) => {
           victimHero.fileName         AS victimFileName,
           assistant1Hero.fileName     AS assistant1FileName,
           assistant2Hero.fileName     AS assistant2FileName,
-          assistant2Hero.fileName     AS assistant3FileName,
-          assistant2Hero.fileName     AS assistant4FileName
+          assistant3Hero.fileName     AS assistant3FileName,
+          assistant4Hero.fileName     AS assistant4FileName
         FROM events
         LEFT JOIN heroes AS killerHero ON killerHero.id = events.killerId
         LEFT JOIN heroes AS victimHero ON victimHero.id = events.victimId
