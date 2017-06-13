@@ -135,6 +135,7 @@ router.get('/:id/games', (req, res, next) => {
 
         games.forEach(game => {
           game.thumb = `${config.gameData.thumbPref}/${game.streamId}/${game.firstEventId}.jpg`;
+          game.created_at = game.created_at + '000';
         });
 
         resolve(games);
