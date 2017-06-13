@@ -7,8 +7,8 @@
     <div class="w-row">
       <div class="w-col w-col-9 w-col-stack">
         <div class="b-game-info">
-          <div class="game-date" ng-if="vm.game.gameTime > 0"><span class="text-span-2">Game time: {{vm.game.gameTime|gameTime}}</span></div>
-          <div class="game-date" ng-if="vm.game.gameTime < 0"><span class="text-span-2">Game time: not finished'}}</span></div>
+          <div class="game-date" ng-if="vm.game.gameDuration"><span class="text-span-2">Game time: {{vm.game.gameDuration|gameTime}}</span></div>
+          <div class="game-date" ng-if="!vm.game.gameDuration"><span class="text-span-2">Game time: not finished</span></div>
           <div class="team-vs-team">
             <div class="b-game-team">
               <img class="image-icon" ng-if="vm.game.team1Hero1Icon" ng-src="{{vm.game.team1Hero1Icon}}" width="30">
