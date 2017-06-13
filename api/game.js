@@ -80,12 +80,10 @@ router.get('/:id/highlights', (req, res, next) => {
           SELECT gameId, COUNT(id) AS totalCount
           FROM events
           LEFT JOIN (SELECT id AS _gameId, heroId FROM stream_games) AS game ON events.gameId = game._gameId
-          #LEFT JOIN (SELECT id AS _heroId, type AS heroType FROM heroes) AS victim ON victim._heroId = events.victimId
           WHERE type = 1
             AND highlightId <> 0
             AND streamerInvolved = game.heroId
             AND killerId = game.heroId
-            #AND victim.heroType = 1
           GROUP BY gameId
         ) AS killEvents ON killEvents.gameId = stream_games.id
 
@@ -93,7 +91,6 @@ router.get('/:id/highlights', (req, res, next) => {
           SELECT gameId, COUNT(id) AS totalCount
           FROM events
           LEFT JOIN (SELECT id AS _gameId, heroId FROM stream_games) AS game ON events.gameId = game._gameId
-          #LEFT JOIN (SELECT id AS _heroId, type AS heroType FROM heroes) AS victim ON victim._heroId = events.victimId
           WHERE type = 1
             AND highlightId <> 0
             AND streamerInvolved = game.heroId
@@ -101,7 +98,6 @@ router.get('/:id/highlights', (req, res, next) => {
               OR assistant2 = game.heroId
               OR assistant3 = game.heroId
               OR assistant4 = game.heroId)
-            #AND victim.heroType = 1
           GROUP BY gameId
         ) AS assistEvents ON assistEvents.gameId = stream_games.id
 
@@ -109,12 +105,10 @@ router.get('/:id/highlights', (req, res, next) => {
           SELECT gameId, COUNT(id) AS totalCount
           FROM events
           LEFT JOIN (SELECT id AS _gameId, heroId FROM stream_games) AS game ON events.gameId = game._gameId
-          #LEFT JOIN (SELECT id AS _heroId, type AS heroType FROM heroes) AS killer ON killer._heroId = events.killerId
           WHERE type = 1
             AND highlightId <> 0
             AND streamerInvolved = game.heroId
             AND victimId = game.heroId
-            #AND killer.heroType = 1
           GROUP BY gameId
         ) AS deathEvents ON deathEvents.gameId = stream_games.id
 
@@ -203,12 +197,10 @@ router.get('/:id/highlights', (req, res, next) => {
           SELECT highlightId, COUNT(id) AS totalCount
           FROM events
           LEFT JOIN (SELECT id AS _hlId, streamerInvolved FROM highlights) AS highlight ON events.highlightId = highlight._hlId
-          #LEFT JOIN (SELECT id AS _heroId, type AS heroType FROM heroes) AS victim ON victim._heroId = events.victimId
           WHERE type = 1
             AND highlightId <> 0
             AND events.streamerInvolved = highlight.streamerInvolved
             AND killerId = highlight.streamerInvolved
-            #AND victim.heroType = 1
           GROUP BY highlightId
         ) AS killEvents ON killEvents.highlightId = highlights.id
 
@@ -216,7 +208,6 @@ router.get('/:id/highlights', (req, res, next) => {
           SELECT highlightId, COUNT(id) AS totalCount
           FROM events
           LEFT JOIN (SELECT id AS _hlId, streamerInvolved FROM highlights) AS highlight ON events.highlightId = highlight._hlId
-          #LEFT JOIN (SELECT id AS _heroId, type AS heroType FROM heroes) AS victim ON victim._heroId = events.victimId
           WHERE type = 1
             AND highlightId <> 0
             AND events.streamerInvolved = highlight.streamerInvolved
@@ -224,7 +215,6 @@ router.get('/:id/highlights', (req, res, next) => {
               OR assistant2 = highlight.streamerInvolved
               OR assistant3 = highlight.streamerInvolved
               OR assistant4 = highlight.streamerInvolved)
-            #AND victim.heroType = 1
           GROUP BY highlightId
         ) AS assistEvents ON assistEvents.highlightId = highlights.id
 
@@ -232,12 +222,10 @@ router.get('/:id/highlights', (req, res, next) => {
           SELECT highlightId, COUNT(id) AS totalCount
           FROM events
           LEFT JOIN (SELECT id AS _hlId, streamerInvolved FROM highlights) AS highlight ON events.highlightId = highlight._hlId
-          #LEFT JOIN (SELECT id AS _heroId, type AS heroType FROM heroes) AS killer ON killer._heroId = events.killerId
           WHERE type = 1
             AND highlightId <> 0
             AND events.streamerInvolved = highlight.streamerInvolved
             AND victimId = highlight.streamerInvolved
-            #AND killer.heroType = 1
           GROUP BY highlightId
         ) AS deathEvents ON deathEvents.highlightId = highlights.id
 
@@ -289,12 +277,10 @@ router.get('/:id/highlights', (req, res, next) => {
           SELECT highlightId, COUNT(id) AS totalCount
           FROM events
           LEFT JOIN (SELECT id AS _hlId, streamerInvolved FROM highlights) AS highlight ON events.highlightId = highlight._hlId
-          #LEFT JOIN (SELECT id AS _heroId, type AS heroType FROM heroes) AS victim ON victim._heroId = events.victimId
           WHERE type = 1
             AND highlightId <> 0
             AND events.streamerInvolved = highlight.streamerInvolved
             AND killerId = highlight.streamerInvolved
-            #AND victim.heroType = 1
           GROUP BY highlightId
         ) AS killEvents ON killEvents.highlightId = highlights.id
 
@@ -302,7 +288,6 @@ router.get('/:id/highlights', (req, res, next) => {
           SELECT highlightId, COUNT(id) AS totalCount
           FROM events
           LEFT JOIN (SELECT id AS _hlId, streamerInvolved FROM highlights) AS highlight ON events.highlightId = highlight._hlId
-          #LEFT JOIN (SELECT id AS _heroId, type AS heroType FROM heroes) AS victim ON victim._heroId = events.victimId
           WHERE type = 1
             AND highlightId <> 0
             AND events.streamerInvolved = highlight.streamerInvolved
@@ -310,7 +295,6 @@ router.get('/:id/highlights', (req, res, next) => {
               OR assistant2 = highlight.streamerInvolved
               OR assistant3 = highlight.streamerInvolved
               OR assistant4 = highlight.streamerInvolved)
-            #AND victim.heroType = 1
           GROUP BY highlightId
         ) AS assistEvents ON assistEvents.highlightId = highlights.id
 
@@ -318,12 +302,10 @@ router.get('/:id/highlights', (req, res, next) => {
           SELECT highlightId, COUNT(id) AS totalCount
           FROM events
           LEFT JOIN (SELECT id AS _hlId, streamerInvolved FROM highlights) AS highlight ON events.highlightId = highlight._hlId
-          #LEFT JOIN (SELECT id AS _heroId, type AS heroType FROM heroes) AS killer ON killer._heroId = events.killerId
           WHERE type = 1
             AND highlightId <> 0
             AND events.streamerInvolved = highlight.streamerInvolved
             AND victimId = highlight.streamerInvolved
-            #AND killer.heroType = 1
           GROUP BY highlightId
         ) AS deathEvents ON deathEvents.highlightId = highlights.id
 

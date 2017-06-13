@@ -1,4 +1,4 @@
-require('dotenv').config({ silent: true })
+require('dotenv').config({ silent: true });
 
 const common = require('./components/common');
 const server = require('./components/server');
