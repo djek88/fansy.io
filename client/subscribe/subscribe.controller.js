@@ -16,10 +16,9 @@ function subscribeController($scope, $location, $http, $state, APP_CONFIG, handl
     image: '/images/payment_robot_280.png',
     locale: 'auto',
     token: function(token) {
-      console.log(token);
       $http.post(purchaseUrl, {token})
         .then(function(res) {
-          if (res.status == true) {
+          if (res.data.status == true) {
             $state.reload();
           }
         }, function(err) {
