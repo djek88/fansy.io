@@ -30,14 +30,5 @@ function config($stateProvider, $urlRouterProvider) {
           return url;
         }
       },
-    })
-    .state('app.subscribe.success', {
-      url: '/subscribe/:handle/success',
-      views: {
-        'layout@app': {
-          templateUrl: 'subscribe/success.tpl.html'
-        }
-      }
     });
-;
 }
