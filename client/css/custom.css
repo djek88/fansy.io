@@ -100,3 +100,30 @@
 .no-scroll {
   overflow: hidden;
 }
+
+.payment-widget .stripe-button-el,
+.payment-widget .stripe-button-el:not(:disabled):active,
+.payment-widget .stripe-button-el.active {
+  display: inline-block;
+  color: white;
+  border: 0;
+  line-height: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 0;
+  padding: 15px 30px;
+  background-color: #6734ba;
+  background-image: none;
+  margin-top: 20px;
+}
+
+.payment-widget .stripe-button-el span,
+.payment-widget .stripe-button-el:not(:disabled):active span,
+.payment-widget .stripe-button-el.active span {
+  background: none;
+  border: none;
+  box-shadow: none;
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: uppercase;
+}

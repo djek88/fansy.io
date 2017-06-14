@@ -1,0 +1,64 @@
+  <div class="s-header">
+    <div class="promo-container w-container"><a class="link-block-logo w-inline-block" href="index.html"><h1 class="text-logo-small">fansy.ai</h1></a>
+      <div class="header-nav-right"><a class="header-nav only-element promo-nav" href="mailto:kk@fansy.io">Contact Us</a>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="c-content w-container">
+      <div class="b-payment">
+        <div class="w-row">
+          <div class="w-col w-col-4"><img class="payment-robot" src="images/payment_robot_280.png" width="260">
+          </div>
+          <div class="w-col w-col-8">
+            <h1 class="payment-welcome">Hey {{vm.handle}},</h1>
+            <h2 class="payment-subheader" ng-if="vm.isSubscribed == false">Let’s finish powering you up!</h2>
+            <div class="payment-subheader" ng-if="vm.isSubscribed == true">
+              <div class="subscription-time">Thanks for being cool 😎 and having active subscription!</div>
+            </div>
+
+            <div class="payment-list">
+              <div class="payment-list-el"><img class="icon-galka" src="images/galka.png">
+                <div class="paragraph-list-el-text">Unlimited hours of detection</div>
+              </div>
+              <div class="payment-list-el"><img class="icon-galka" src="images/galka.png">
+                <div class="paragraph-list-el-text">Unlimited storage</div>
+              </div>
+              <div class="payment-list-el"><img class="icon-galka" src="images/galka.png">
+                <div class="paragraph-list-el-text">Real time processing</div>
+              </div>
+              <div class="payment-list-el"><img class="icon-galka" src="images/galka.png">
+                <div class="paragraph-list-el-text">High quality video</div>
+              </div>
+            </div>
+            <div class="b-subscription-part" ng-if="vm.isSubscribed == false">
+              <div class="subscription-time">Thanks for being cool 😎 and having active</div>
+              <div class="subscription-time">SUBSCRIPTION FOR <strong><span>3 MONTHS</span></strong>
+              </div>
+              <div class="subscription-price"><span>FOR ONLY</span> <span class="subscription-price-discount">$19</span> <span class="subscription-price-old">$60</span>
+              </div>
+            </div>
+            <button ng-if="vm.isSubscribed == false" id="paymentButton" ng-click="vm.launchStripe($event)" class="subscription-buy w-button">Buy now</button>
+          </div>
+        </div>
+      </div>
+      <div class="b-payment-spacer"></div>
+    </div>
+  </div>
+  <div class="s-moneyflow">
+    <div class="c-content w-container">
+      <div class="moneyflow-title">THAT MONEY WILL GO TO</div>
+      <div class="w-row">
+        <div class="flow-column w-col w-col-4"><img src="images/Product.png">
+          <div class="moneyflow-item">Making product&nbsp; better
+          </div>
+        </div>
+        <div class="flow-column w-col w-col-4"><img src="images/Eye.png">
+          <div class="moneyflow-item">Computer vision&nbsp; infrastructure costs</div>
+        </div>
+        <div class="flow-column w-col w-col-4"><img src="images/Storage.png">
+          <div class="hack-br moneyflow-item">Storage costs</div>
+        </div>
+      </div>
+    </div>
+  </div>
