@@ -157,8 +157,6 @@ router.get('/:id/highlights', (req, res, next) => {
 
         const game = games[0];
 
-        game.gameDuration = game.gameDuration + 40; // STUB
-
         game.hlsThumb = `${config.gameData.thumbPref}/${game.streamId}/${game.lastEventId}.jpg`;
         game.hlsVideo = `${config.gameData.highlightsVideoPref}/${game.streamerNickname}/${game.streamNum}/${game.gameNum}.mp4`;
 
@@ -329,8 +327,6 @@ router.get('/:id/highlights', (req, res, next) => {
         highlights.forEach(hl => {
           hl.thumb = `${config.highlightData.thumbPref}/${hl.streamId}/${hl.firstEventId}.jpg`;
           hl.video = `${config.highlightData.videoPref}/${hl.streamerNickname}/${hl.streamNum}/${hl.highlightNum}.mp4`;
-
-          hl.gameTime = hl.gameTime + 40;// STUB
         });
 
         resolve(highlights);

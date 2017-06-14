@@ -310,8 +310,6 @@ router.get('/:id/highlights', (req, res, next) => {
           hl.thumb = `${config.highlightData.thumbPref}/${hl.streamId}/${hl.firstEventId}.jpg`;
           hl.video = `${config.highlightData.videoPref}/${hl.streamerNickname}/${hl.streamNum}/${hl.highlightNum}.mp4`;
           hl.gameDate = hl.gameDate + '000';
-
-          hl.gameTime = hl.gameTime + 40;// STUB
         });
 
         resolve(highlights);
