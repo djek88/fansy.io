@@ -96,3 +96,7 @@
 .w-radio .w-radio-input {
   margin-right: 8px;
 }
+
+.no-scroll {
+  overflow: hidden;
+}

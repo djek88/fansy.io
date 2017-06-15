@@ -4,9 +4,11 @@ angular
   .module('app.streamer')
   .controller('streamerHighlightController', streamerHighlightController);
 
-function streamerHighlightController($state, APP_CONFIG, highlight, highlightEvents) {
+function streamerHighlightController($state, $rootScope, APP_CONFIG, highlight, highlightEvents) {
   const vm = this;
   const playerInstance = jwplayer("myElement");
+
+  $rootScope.modalOpen = true;
 
   vm.highlight = highlight;
   vm.highlightEvents = highlightEvents;
@@ -23,6 +25,7 @@ function streamerHighlightController($state, APP_CONFIG, highlight, highlightEve
   function closePlayer(e) {
     if (e.target === e.currentTarget
       || e.target === document.querySelector('strong.x-text')) {
+      $rootScope.modalOpen = false;
       $state.go('^', null, { reload: true });
     }
   }
