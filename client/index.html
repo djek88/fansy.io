@@ -4,11 +4,11 @@
 <html data-wf-page="58f4c8f108e8bf3d78e3bb4b" data-wf-site="5848596297d08fb201d83c01">
 <head>
   <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({‘gtm.start’:
-  new Date().getTime(),event:‘gtm.js’});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!=‘dataLayer’?‘&l=‘+l:‘’;j.async=true;j.src=
-  ‘https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,‘script’,‘dataLayer’,‘!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!YOUR ID!!!!!!!!!!!!!!!!!!!!!!!!!!!!!’);</script>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!YOUR ID!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');</script>
   <!-- End Google Tag Manager -->
   <base href="/">
   <meta charset="utf-8">
@@ -39,6 +39,8 @@
   <link href="images/favicon.png" rel="shortcut icon" type="image/x-icon">
   <link href="images/webclip.png" rel="apple-touch-icon">
   <script src="https://content.jwplatform.com/libraries/fACZw8Y9.js"></script>
+
+  <script src="https://checkout.stripe.com/checkout.js"></script>
 
   <!-- Application Configuration File -->
   <script src="app.config.js" type="text/javascript"></script>
@@ -72,15 +74,17 @@
   <!-- Yandex.Metrika counter -->
   <script src="https://mc.yandex.ru/metrika/watch.js" type="text/javascript"></script>
   <script type="text/javascript">
-  try {
+  if (null != window.appConfig.yandexMetricaId) {
+    try {
       var yaCounter = new Ya.Metrika({
-          id:/*PUT HERE YOUR YANDEX ID*/,
-          clickmap:true,
-          trackLinks:true,
-          accurateTrackBounce:true,
-          webvisor:true
+        id:                  window.appConfig.yandexMetricaId,
+        clickmap:            true,
+        trackLinks:          true,
+        accurateTrackBounce: true,
+        webvisor:            true
       });
-  } catch(e) { }
+    } catch(e) { }
+  }
   </script>
   <noscript><div><img src="https://mc.yandex.ru/watch/<!-- PUT HERE YOUR YANDEX ID -->" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
   <!-- /Yandex.Metrika counter -->
@@ -134,6 +138,12 @@
       <script src="streamer/highlights/streamer-highlights.controller.js" type="text/javascript"></script>
       <script src="streamer/highlights/streamer-highlights.service.js" type="text/javascript"></script>
     <!-- end streamer module -->
+
+    <!-- subscribe module -->
+      <script src="subscribe/module.js" type="text/javascript"></script>
+      <script src="subscribe/subscribe.controller.js" type="text/javascript"></script>
+    <!-- end subscribe module -->
+
   <!-- end APPLICATION scripts -->
 </body>
 </html>

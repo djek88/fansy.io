@@ -9,6 +9,7 @@ angular
     'app.common',
     'app.landing',
     'app.streamer',
+    'app.subscribe',
   ])
   .config(config)
   .constant('APP_CONFIG', window.appConfig)
@@ -72,7 +73,9 @@ function run($rootScope, $location, $state, APP_CONFIG) {
   let path = $location.path();
   $rootScope.$on('$stateChangeSuccess', (event, toState, toParams, fromState, fromParams) => {
     let newPath = $location.path();
-    window.yaCounter && window.yaCounter.hit(newPath, { referer: path });
+    if (undefined != window.yaCounter) {
+      window.yaCounter.hit(newPath, { referer: path });
+    }
     path = newPath;
   });
 

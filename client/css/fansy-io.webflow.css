@@ -273,6 +273,10 @@ a {
   color: #fff;
 }
 
+.promo-nav.header-nav.only-element {
+  margin-right: 0px;
+}
+
 .promo-container {
   overflow: visible;
   margin-bottom: 1px;
@@ -364,7 +368,7 @@ a {
 .b-modal-wrapper {
   position: fixed;
   z-index: 9999;
-  display: block;
+  display: none;
   overflow: scroll;
   width: 100%;
   height: 100%;
@@ -695,6 +699,121 @@ a {
   text-decoration: underline;
 }
 
+.b-payment {
+  margin-top: 30px;
+}
+
+.payment-welcome {
+  margin-top: 20px;
+  margin-bottom: 0px;
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.payment-subheader {
+  margin-top: 10px;
+  color: #222;
+  font-size: 36px;
+}
+
+.payment-robot {
+  margin-top: 50px;
+  margin-left: 10px;
+}
+
+.payment-list {
+  margin-top: 35px;
+}
+
+.payment-list-el {
+  margin-bottom: 10px;
+  line-height: 20px;
+}
+
+.paragraph-list-el-text {
+  display: inline-block;
+  margin-left: 15px;
+  color: #222;
+  font-size: 20px;
+}
+
+.icon-galka {
+  margin-bottom: 2px;
+  padding-bottom: 0px;
+}
+
+.b-subscription-part {
+  margin-top: 55px;
+}
+
+.subscription-time {
+  color: #222;
+  font-size: 24px;
+  line-height: 28px;
+}
+
+.subscription-price {
+  margin-top: 20px;
+  font-size: 24px;
+}
+
+.subscription-price-discount {
+  color: #222;
+  font-size: 42px;
+  font-weight: 700;
+}
+
+.subscription-price-old {
+  color: #444;
+  font-size: 32px;
+  text-decoration: line-through;
+}
+
+.subscription-buy {
+  margin-top: 20px;
+  padding: 15px 30px;
+  background-color: #6734ba;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.s-moneyflow {
+  background-color: #eee;
+}
+
+.b-payment-spacer {
+  height: 60px;
+}
+
+.moneyflow-title {
+  padding-top: 20px;
+  padding-bottom: 40px;
+  color: #222;
+  font-size: 24px;
+  line-height: 28px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.flow-column {
+  text-align: center;
+}
+
+.moneyflow-item {
+  margin-bottom: 20px;
+  padding-top: 10px;
+  padding-right: 30px;
+  padding-left: 30px;
+  color: #222;
+  font-size: 24px;
+  line-height: 30px;
+}
+
+.moneyflow-item.hack-br {
+  padding-right: 90px;
+  padding-left: 90px;
+}
+
 html.w-mod-js *[data-ix="popup-open"] {
   -webkit-transform: translate(0px, 0px);
   -ms-transform: translate(0px, 0px);
@@ -747,6 +866,18 @@ html.w-mod-js *[data-ix="popup-open"] {
   }
   .column-3 {
     position: relative;
+  }
+  .payment-robot {
+    max-width: 90%;
+    margin-top: 70px;
+  }
+  .moneyflow-item {
+    padding-right: 0px;
+    padding-left: 0px;
+  }
+  .moneyflow-item.hack-br {
+    padding-right: 70px;
+    padding-left: 70px;
   }
 }
 
@@ -803,6 +934,21 @@ html.w-mod-js *[data-ix="popup-open"] {
   }
   .download-icon {
     display: none;
+  }
+  .b-payment {
+    margin-top: 0px;
+  }
+  .payment-welcome {
+    margin-top: 0px;
+  }
+  .payment-robot {
+    display: none;
+  }
+  .b-payment-spacer {
+    height: 30px;
+  }
+  .moneyflow-item {
+    margin-bottom: 20px;
   }
 }
 
@@ -880,7 +1026,7 @@ html.w-mod-js *[data-ix="popup-open"] {
   }
   .header-nav-right {
     display: block;
-    float: none;
+    float: right;
   }
   .link {
     font-weight: 700;
@@ -899,6 +1045,37 @@ html.w-mod-js *[data-ix="popup-open"] {
   }
   .popup-title {
     margin-top: 10px;
+  }
+  .payment-welcome {
+    margin-top: 0px;
+    font-size: 24px;
+  }
+  .payment-subheader {
+    font-size: 28px;
+  }
+  .paragraph-list-el-text {
+    font-size: 18px;
+  }
+  .b-subscription-part {
+    margin-top: 35px;
+  }
+  .subscription-time {
+    padding-right: 65px;
+    line-height: 30px;
+  }
+  .subscription-price {
+    margin-top: 10px;
+  }
+  .b-payment-spacer {
+    height: 15px;
+  }
+  .moneyflow-title {
+    padding-right: 50px;
+    padding-left: 50px;
+  }
+  .moneyflow-item.hack-br {
+    padding-right: 0px;
+    padding-left: 0px;
   }
 }
 

@@ -2,7 +2,7 @@
 
 const appConfig = window.appConfig || {};
 
-const serverHost = 'http://localhost:8000';
+const serverHost = 'http://fansy.dev.lebob:8000';
 
 appConfig.gaTrackingID = 'UA-XXXXX-Y';
 
