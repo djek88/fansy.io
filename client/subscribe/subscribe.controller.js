@@ -13,7 +13,7 @@ function subscribeController($scope, $location, $http, $state, APP_CONFIG, handl
   vm.purchaseUrl  = purchaseUrl;
 
   var handler = StripeCheckout.configure({
-    key: 'pk_test_egFDzT9yteccNRvvOEHEZwqs',
+    key: 'pk_live_Lrz0BpspNmi7H08Up6UgfyhA',
     image: '/images/logo.png',
     locale: 'auto',
     token: function(token) {
