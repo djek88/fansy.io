@@ -76,6 +76,10 @@
   color: white;
 }
 
+.b-modal-wrapper {
+    display: block;
+}
+
 .link-h:hover,
 .link-h:focus {
   color: rgba(0, 0, 0, .87);
