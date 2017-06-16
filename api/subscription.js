@@ -49,9 +49,9 @@ router.get('/status/:handle', (req, res, next) => {
   conn.query(sql, (err, results) => {
     if (err) return next(err);
     if (results.length > 0) {
-      res.json({'status': true});
+      res.json({'status': true, 'paid_til': moment(results[0].paid_til).format('MMMM Do YYYY')});
     } else {
-      res.json({'status': false});
+      res.json({'status': false, 'paid_til': ""});
     }
   });
 });

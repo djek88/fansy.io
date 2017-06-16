@@ -16,6 +16,7 @@
             <div class="payment-subheader" ng-if="vm.isSubscribed == true">
               <div class="subscription-time">Thanks for being cool 😎 and having active subscription!</div>
             </div>
+            <div ng-if="vm.isSubscribed == true">Your subscription is valid until: {{vm.paidTil}}</div>
 
             <div class="payment-list">
               <div class="payment-list-el"><img class="icon-galka" src="images/galka.png">

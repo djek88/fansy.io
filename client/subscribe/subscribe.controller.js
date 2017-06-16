@@ -9,6 +9,7 @@ function subscribeController($scope, $location, $http, $state, APP_CONFIG, handl
 
   vm.handle       = handle;
   vm.isSubscribed = status.status;
+  vm.paidTil      = status.paid_til;
   vm.purchaseUrl  = purchaseUrl;
 
   var handler = StripeCheckout.configure({
