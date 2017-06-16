@@ -13,7 +13,7 @@ function subscribeController($scope, $location, $http, $state, APP_CONFIG, handl
 
   var handler = StripeCheckout.configure({
     key: 'pk_test_egFDzT9yteccNRvvOEHEZwqs',
-    image: '/images/payment_robot_280.png',
+    image: '/images/logo.png',
     locale: 'auto',
     token: function(token) {
       $http.post(purchaseUrl, {token})
