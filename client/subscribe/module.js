@@ -6,7 +6,7 @@ angular
   ])
   .config(config);
 
-function config($stateProvider, $urlRouterProvider) {
+function config($stateProvider) {
   $stateProvider
     .state('app.subscribe', {
       url: '/subscribe/:handle',

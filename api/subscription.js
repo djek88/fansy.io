@@ -1,11 +1,7 @@
 const router = require('express').Router();
-const HttpError = require('../lib/HttpError');
 const conn = require('../common/database').conn;
 const config = require('../config');
-
-const stripePublicKey = process.env.STRIPE_PUBLIC_KEY;
-const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
-const stripe = require("stripe")(stripeSecretKey);
+const stripe = require("stripe")(config.stripe.secretKey);
 const moment = require('moment');
 
 router.post('/process/:handle', (req, res, next) => {

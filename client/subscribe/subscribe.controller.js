@@ -4,7 +4,7 @@ angular
   .module('app.streamer')
   .controller('subscribeController', subscribeController);
 
-function subscribeController($scope, $location, $http, $state, APP_CONFIG, handle, status, purchaseUrl) {
+function subscribeController($http, $state, APP_CONFIG, handle, status, purchaseUrl) {
   const vm = this;
 
   vm.handle       = handle;
@@ -13,7 +13,7 @@ function subscribeController($scope, $location, $http, $state, APP_CONFIG, handl
   vm.purchaseUrl  = purchaseUrl;
 
   var handler = StripeCheckout.configure({
-    key: 'pk_live_Lrz0BpspNmi7H08Up6UgfyhA',
+    key: APP_CONFIG.stripePublicKey,
     image: '/images/logo.png',
     locale: 'auto',
     token: function(token) {

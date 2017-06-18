@@ -6,6 +6,7 @@ const database = require('./components/database');
 const gameData = require('./components/gameData');
 const highlightData = require('./components/highlightData');
 const heroData = require('./components/heroData');
+const stripe = require('./components/stripe');
 
 module.exports = Object
-  .assign({}, common, server, database, gameData, highlightData, heroData);
+  .assign({}, common, server, database, gameData, highlightData, heroData, stripe);
